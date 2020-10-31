@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+@import 'global/_global-dir'; 
+@import 'pages/_pages-dir'; 
+@import 'ui/_ui-dir'; 
