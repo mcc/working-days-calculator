@@ -1,3 +1,8 @@
+# working-days-calculator
+📆 Calculate working days between dates
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
