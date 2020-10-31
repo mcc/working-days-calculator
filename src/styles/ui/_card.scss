@@ -1,0 +1,18 @@
+.card {
+    background: white; 
+    border-radius: $border-radius-sm;
+    padding : 1rem;
+    bottom : 4.5rem;
+    box-shadow: 6px 4px 16px lightgrey; 
+    display :flex; 
+    margin-bottom: 10px;
+
+    &.align-center {
+        justify-content: center;
+    }
+
+    &.align-left {
+        justify-content: left;
+    } 
+
+}

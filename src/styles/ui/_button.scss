@@ -1,0 +1,9 @@
+.button {
+    text-align: center; 
+    padding: 0.3rem 0; 
+    &.blue {
+        background : $color-blue;
+        border-radius: $border-radius-xs; 
+        color : white; 
+    }
+}

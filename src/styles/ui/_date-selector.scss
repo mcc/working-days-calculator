@@ -1,0 +1,12 @@
+.date-selector {
+    display : grid; 
+    grid-template-rows: repeat(3,1fr); 
+    gap : 0.8rem;
+
+
+    .date-wrapper {
+        display : grid; 
+        grid-template-columns: repeat(3,1fr);
+        gap : 0 1rem; 
+    }
+}
