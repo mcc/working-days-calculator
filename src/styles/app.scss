@@ -10,9 +10,7 @@
 .main-content {
   flex: 1;
   padding: 5rem 8rem;
-  // > div {
-  //   min-width: 60%;
-  // }
+  font-weight: 600; 
   
   .content-wrapper {
     display: grid;
@@ -33,8 +31,14 @@
     }
     
   }
+} 
+
+i {
+  font-size: 1.6rem; 
+  color : $color-blue;
 }
 
 body {
   margin: 0 auto;
+  color : $color-navy; 
 }

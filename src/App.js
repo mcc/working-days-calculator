@@ -1,4 +1,5 @@
 import 'styles/app.scss'; 
+import 'react-calendar/dist/Calendar.css'; 
 import DateCalculator from 'containers'; 
 
 
