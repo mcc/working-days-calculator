@@ -1,26 +1,40 @@
-
-@import 'global/_global-dir'; 
-@import 'pages/_pages-dir'; 
-@import 'ui/_ui-dir'; 
+@import "global/_global-dir";
+@import "pages/_pages-dir";
+@import "ui/_ui-dir";
 
 .App {
   height: 100vh;
-  // background: black; 
-  display : flex; 
-} 
+  display: flex;
+}
 
-.main-content { 
-  flex : 1; 
-  display: grid; 
-  align-items : center; 
-  grid-template-rows :  250px 100px 80px 120px; 
-  padding : 5rem 8rem; 
-
-  > div {
-    min-width : 60%;
+.main-content {
+  flex: 1;
+  padding: 5rem 8rem;
+  // > div {
+  //   min-width: 60%;
+  // }
+  
+  .content-wrapper {
+    display: grid;
+    align-items: center;
+    grid-template-rows: 250px 100px 80px 120px;
+    width: 1000px;
+    margin: 0 auto;
+    
+    @media screen and (min-width: 90.063em) {
+      width: 1090px;
+      min-width: 1000px;
+    } 
+    
+    @media screen and (max-width : 71em){
+      width : auto; 
+      min-width : 0; 
+      padding : 0 16px; 
+    }
+    
   }
 }
 
 body {
-  margin : 0 auto; 
+  margin: 0 auto;
 }
