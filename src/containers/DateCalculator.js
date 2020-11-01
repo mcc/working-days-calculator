@@ -2,6 +2,7 @@ import React from 'react';
 
 import DateSelector from 'components/DateSelector'; 
 import Card from 'components/Card';
+import ProgressBar from 'components/ProgressBar'; 
 
 const DateCalculator = () => {
     return (
@@ -12,8 +13,8 @@ const DateCalculator = () => {
             </Card>
             <Card align="left">
                 178 calendar days
-            </Card>
-            
+            </Card> 
+            <ProgressBar value={82} />
         </div>
     ); 
 } 
