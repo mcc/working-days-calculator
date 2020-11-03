@@ -22,7 +22,7 @@ const BorderLinearProgress = withStyles((theme) => ({
 const ProgressBar = ({ value }) => {
   const [progress, setProgress] = useState(0);
 
-  useEffect(() => { 
+  useEffect(() => {
     const timer = setInterval(() => {
       setProgress((prevProgress) =>
         prevProgress >= value ? value : prevProgress + 5
@@ -37,7 +37,7 @@ const ProgressBar = ({ value }) => {
   return (
     <div className="progress-bar">
       <BorderLinearProgress variant="determinate" value={progress} />
-      <span> {value}%</span>
+      <span> {value || 0}%</span>
     </div>
   );
 };

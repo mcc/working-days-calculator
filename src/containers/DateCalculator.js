@@ -22,7 +22,10 @@ const DateCalculator = () => {
     if (type === TYPE_END) setEndDate(value);
   };
 
-  const handleCalculate = () => {
+  const handleCalculate = () => { 
+
+    if(!startDate || !endDate || endDate < startDate) return; 
+
     const days = getWorkingDaysCount(startDate, endDate);
     setCalendarDays(days.calendarDays || '-');
     setWorkDays(days.workDays || '-'); 
@@ -31,7 +34,7 @@ const DateCalculator = () => {
     const passedDates = moment(startDate).diff(moment(baseDate),'days') + 1 ; 
     const percent = ((passedDates/ (365*2)) *100); 
 
-    setPercent(percent.toFixed(1)); 
+    setPercent(Number.parseFloat(percent.toFixed(1))); 
   };
 
   return (
