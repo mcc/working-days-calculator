@@ -6,7 +6,7 @@ import DateCalculator from 'containers';
 function App() {
   return (
     <div className="App">
-      <DateCalculator />
+    <DateCalculator />
     </div>
   );
 }
