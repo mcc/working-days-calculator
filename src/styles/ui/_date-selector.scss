@@ -5,10 +5,12 @@
 
   .date-wrapper {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 100px 1fr auto auto; 
     gap: 0 1rem;
-    justify-items: center;
-
+    
+    .text, i {
+      align-self : center; 
+    }
     input {
       border-radius: 0.5rem;
       outline: none;
@@ -20,6 +22,7 @@
     }
 
     i {
+      margin : 0; 
       &:hover {
         cursor: pointer;
       }
@@ -30,8 +33,8 @@
       position: absolute;
       z-index: 999;
       right: 0;
-      left: 50%;
-      margin-top: 37px;
+      left: 45%;
+      margin-top: 44px;
       border-radius: 0.4rem;
       background: rgb(135, 170, 238);
       background: linear-gradient(

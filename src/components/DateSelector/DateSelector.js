@@ -11,11 +11,11 @@ import Button from "@material-ui/core/Button";
 
 import Calendar from "react-calendar";
 
-const DateSelector = ({ startDate, endDate, onDateChange, onCalculate}) => {
+const DateSelector = ({ startDate, endDate, onDateChange, onCalculate }) => {
   const CalculateButton = withStyles({
     root: {
       backgroundColor: COLOR_BLUE,
-    }
+    },
   })(Button);
 
   const toggleCalendar = (type) => {
@@ -57,20 +57,43 @@ const DateSelector = ({ startDate, endDate, onDateChange, onCalculate}) => {
         onChange={onDateChange}
         onToggleCalendar={toggleCalendar}
       />
-      <CalculateButton variant="contained" color="primary" onClick={onCalculate}>
+      <CalculateButton
+        variant="contained"
+        color="primary"
+        onClick={onCalculate}
+      >
         Calculate
       </CalculateButton>
     </Card>
   );
 };
 
-const Date = ({ id, name, value, onChange, onToggleCalendar }) => { 
+const Date = ({ id, name, value, onChange, onToggleCalendar }) => {
   const formattedValue = value && moment(value).format("YYYY/MM/DD");
+  // const TodayButton = withStyles({
+  //   root: {
+  //     color: "#6F81A9",
+  //   },
+  // })(Button);
   return (
     <div className="date-wrapper">
       <Text>{name} </Text>
-      <input type="text" value={formattedValue} placeholder="YYYY/MM/DD" readOnly />
+      <input
+        type="text"
+        value={formattedValue}
+        placeholder="YYYY/MM/DD"
+        readOnly
+      />
       <i className="icon-calendar" onClick={() => onToggleCalendar(id)} />
+      <Button
+        variant="outlined"
+        color="primary"
+        onClick={() =>
+          onChange(id, moment().set({ hour: 0, minute: 0, second: 0 }).toDate())
+        }
+      >
+        Today
+      </Button>
       <Calendar
         className="hide"
         value={value}
