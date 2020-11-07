@@ -17,7 +17,9 @@
     align-items: center;
     grid-template-rows: 250px 100px 80px 120px;
     width: 1000px;
-    margin: 0 auto;
+    margin: 0 auto; 
+    position: relative;
+    top : 10%;
     
     @media screen and (min-width: 90.063em) {
       width: 1090px;
@@ -28,10 +30,24 @@
       width : auto; 
       min-width : 0; 
       padding : 0 16px; 
+      top : 0;
     }
     
   }
 } 
+
+.dobby-wrapper {
+  position: fixed;
+  background: white;
+  border-radius: 50%;
+  bottom: 2rem;
+  padding: 1rem;
+  right: 2rem;
+
+  img {
+    width : 5rem;
+  }
+}
 
 i {
   font-size: 1.6rem; 

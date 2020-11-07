@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import moment from "moment";
 
-import { TYPE_START, TYPE_END } from "constants/Types";
+import { TYPE_START, TYPE_END, SETTINGS_KEY } from "constants/Types";
 
 import DateSelector from "components/DateSelector";
 import Card from "components/Card";
@@ -10,19 +10,35 @@ import ProgressBar from "components/ProgressBar";
 import SettingsModal from "components/SettingsModal";
 
 import { getWorkingDaysCount } from "utils/Calculate";
+import { getLocalStorage, setLocalStorage } from "utils/Storage";
 
 const DateCalculator = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+
   const [workDays, setWorkDays] = useState("-");
   const [calendarDays, setCalendarDays] = useState("-");
   const [percent, setPercent] = useState(0);
+  
   const [open, setOpen] = useState(false);
+  const [settings, setSettings] = useState({}); 
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  useEffect(() => {
+    loadFromLocalStorage();
+  }, []);
 
+  const loadFromLocalStorage = () => {
+    const settings = getLocalStorage(SETTINGS_KEY);
+    if (!settings) return;
+
+    const { title, endDate } = settings;
+    const [year, month, date] = endDate.split("/");
+
+    setStartDate(moment().toDate());
+    setEndDate(moment({ year, month: month - 1, date }).toDate()); 
+    setSettings(settings); 
+  }; 
+  
   const toggleOpen = () => {
     setOpen((prevState) => !prevState);
   };
@@ -46,6 +62,19 @@ const DateCalculator = () => {
     setPercent(Number.parseFloat(percent.toFixed(1)));
   };
 
+  const handleSaveSettings = (data) => {
+    const { title, date } = data;
+    const ddaySettings = {
+      title,
+      endDate: moment(date).format("YYYY/MM/DD"),
+    };
+
+    setLocalStorage(SETTINGS_KEY, ddaySettings);
+    toggleOpen(); 
+
+    loadFromLocalStorage(); 
+  };
+
   return (
     <div className="main-content">
       <div className="content-wrapper">
@@ -66,7 +95,16 @@ const DateCalculator = () => {
         </Card>
         <ProgressBar value={percent} />
 
-        {open && <SettingsModal open={open} onClose={toggleOpen} />}
+        {open && (
+          <SettingsModal
+            open={open}
+            settings={settings}
+            onClose={toggleOpen}
+            onSave={handleSaveSettings}
+          />
+        )}
+
+        {/* <div> message..</div> */}
       </div>
     </div>
   );

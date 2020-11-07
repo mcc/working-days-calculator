@@ -10,9 +10,9 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 
 import Input from "components/Input";
-const SettingsModal = ({ open, onClose, onSave }) => {
-  const [date, setDate] = useState(new Date());
-  const [title, setTitle] = useState("");
+const SettingsModal = ({ open, settings, onClose, onSave }) => {
+  const [date, setDate] = useState(moment(settings.endDate).toDate());
+  const [title, setTitle] = useState(settings.title);
   const [showCalendar, setShowCalendar] = useState(false);
 
   const handleChangeDate = (value) => {
@@ -71,7 +71,7 @@ const SettingsModal = ({ open, onClose, onSave }) => {
         <Button onClick={onClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={onSave} color="primary">
+        <Button onClick={() => onSave({title,date})} color="primary">
           Save
         </Button>
       </DialogActions>
