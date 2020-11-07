@@ -1,0 +1,26 @@
+.settings-modal {
+  .react-calendar {
+    width: auto;
+  }
+
+  .MuiDialogContent-root {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .settings {
+    display: grid;
+    grid-template-columns: 100px 1fr 30px; 
+    gap : 0 1rem; 
+    color: $color-navy;
+    align-items: center;
+
+    .title {
+      font-weight: 600;
+    }
+
+    input {
+      width: auto;
+    }
+  }
+}
