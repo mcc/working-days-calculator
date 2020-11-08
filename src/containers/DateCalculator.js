@@ -81,6 +81,7 @@ const DateCalculator = () => {
         <DateSelector
           startDate={startDate}
           endDate={endDate}
+          title={settings.title}
           onDateChange={handleDateChange}
           onCalculate={handleCalculate}
           onOpenSettings={toggleOpen}

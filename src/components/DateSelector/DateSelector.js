@@ -6,7 +6,7 @@ import { COLOR_BLUE, TYPE_START, TYPE_END } from "constants/Types";
 
 import Card from "components/Card";
 import Text from "components/Text";
-import Input from 'components/Input'; 
+import Input from "components/Input";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
@@ -18,6 +18,7 @@ const DateSelector = ({
   onDateChange,
   onCalculate,
   onOpenSettings,
+  title
 }) => {
   const CalculateButton = withStyles({
     root: {
@@ -50,7 +51,7 @@ const DateSelector = ({
 
   return (
     <Card className="date-selector">
-      <i className="icon-settings" onClick={onOpenSettings} />
+      <Info title={title} onClick={onOpenSettings}/>
       <Date
         id={TYPE_START}
         name="Start Date"
@@ -76,27 +77,38 @@ const DateSelector = ({
   );
 };
 
+const Info = ({ title, onClick }) => (
+  <div className="info">
+    <Text> {title}</Text>
+    <i className="icon-settings" onClick={onClick} />
+  </div>
+);
 const Date = ({ id, name, value, onChange, onToggleCalendar }) => {
   const formattedValue = value && moment(value).format("YYYY/MM/DD");
   return (
     <div className="date-wrapper">
-      <Text>{name} </Text> 
-      <Input
-        type="text"
-        value={formattedValue}
-        placeholder="YYYY/MM/DD"
-        readOnly={true}
-      />
-      <i className="icon-calendar" onClick={() => onToggleCalendar(id)} />
-      <Button
-        variant="outlined"
-        color="primary"
-        onClick={() =>
-          onChange(id, moment().set({ hour: 0, minute: 0, second: 0 }).toDate())
-        }
-      >
-        Today
-      </Button>
+      <Text>{name} </Text>
+      <div className="date">
+        <Input
+          type="text"
+          value={formattedValue}
+          placeholder="YYYY/MM/DD"
+          readOnly={true}
+        />
+        <i className="icon-calendar" onClick={() => onToggleCalendar(id)} />
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={() =>
+            onChange(
+              id,
+              moment().set({ hour: 0, minute: 0, second: 0 }).toDate()
+            )
+          }
+        >
+          Today
+        </Button>
+      </div>
       <Calendar
         className="hide"
         value={value}

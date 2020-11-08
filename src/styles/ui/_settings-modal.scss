@@ -14,7 +14,10 @@
     gap : 0 1rem; 
     color: $color-navy;
     align-items: center;
-
+    
+    @media screen and (max-width : 490px) {
+      grid-template-columns: 50px 12rem auto;
+    }
     .title {
       font-weight: 600;
     }
