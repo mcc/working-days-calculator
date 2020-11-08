@@ -8,6 +8,7 @@ import DateSelector from "components/DateSelector";
 import Card from "components/Card";
 import ProgressBar from "components/ProgressBar";
 import SettingsModal from "components/SettingsModal";
+import CalendarModal from "components/DateSelector/CalendarModal";
 
 import { getWorkingDaysCount } from "utils/Calculate";
 import { getLocalStorage, setLocalStorage } from "utils/Storage";
@@ -19,9 +20,9 @@ const DateCalculator = () => {
   const [workDays, setWorkDays] = useState("-");
   const [calendarDays, setCalendarDays] = useState("-");
   const [percent, setPercent] = useState(0);
-  
-  const [open, setOpen] = useState(false);
-  const [settings, setSettings] = useState({}); 
+
+  const [openSettings, setOpenSettings] = useState(false);
+  const [settings, setSettings] = useState({});
 
   useEffect(() => {
     loadFromLocalStorage();
@@ -31,16 +32,16 @@ const DateCalculator = () => {
     const settings = getLocalStorage(SETTINGS_KEY);
     if (!settings) return;
 
-    const { title, endDate } = settings;
+    const { endDate } = settings;
     const [year, month, date] = endDate.split("/");
 
     setStartDate(moment().toDate());
-    setEndDate(moment({ year, month: month - 1, date }).toDate()); 
-    setSettings(settings); 
-  }; 
-  
+    setEndDate(moment({ year, month: month - 1, date }).toDate());
+    setSettings(settings);
+  };
+
   const toggleOpen = () => {
-    setOpen((prevState) => !prevState);
+    setOpenSettings((prevState) => !prevState);
   };
 
   const handleDateChange = (type, value) => {
@@ -70,9 +71,9 @@ const DateCalculator = () => {
     };
 
     setLocalStorage(SETTINGS_KEY, ddaySettings);
-    toggleOpen(); 
+    toggleOpen();
 
-    loadFromLocalStorage(); 
+    loadFromLocalStorage();
   };
 
   return (
@@ -96,15 +97,14 @@ const DateCalculator = () => {
         </Card>
         <ProgressBar value={percent} />
 
-        {open && (
+        {openSettings && (
           <SettingsModal
-            open={open}
+            open={openSettings}
             settings={settings}
             onClose={toggleOpen}
             onSave={handleSaveSettings}
           />
         )}
-
         {/* <div> message..</div> */}
       </div>
     </div>

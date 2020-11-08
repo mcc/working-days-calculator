@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import moment from "moment";
 
@@ -7,10 +7,9 @@ import { COLOR_BLUE, TYPE_START, TYPE_END } from "constants/Types";
 import Card from "components/Card";
 import Text from "components/Text";
 import Input from "components/Input";
+import CalendarModal from "components/DateSelector/CalendarModal";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-
-import Calendar from "react-calendar";
 
 const DateSelector = ({
   startDate,
@@ -18,53 +17,61 @@ const DateSelector = ({
   onDateChange,
   onCalculate,
   onOpenSettings,
-  title
+  title,
 }) => {
+  const [openCalendar, setOpenCalendar] = useState(false);
+  const [calendarId, setCalendarId] = useState(null);
+
   const CalculateButton = withStyles({
     root: {
       backgroundColor: COLOR_BLUE,
     },
   })(Button);
 
-  const toggleCalendar = (type) => {
-    const calendars = document.getElementsByClassName("react-calendar");
-    const [startCalendar, endCalendar] = calendars;
+  // const toggleCalendar = (type) => {
+  //   const calendars = document.getElementsByClassName("react-calendar");
+  //   const [startCalendar, endCalendar] = calendars;
 
-    if (type === TYPE_START) {
-      const isHidden = startCalendar.classList.contains("hide");
-      if (isHidden) {
-        startCalendar.classList.remove("hide");
-        endCalendar.classList.add("hide");
-      } else {
-        startCalendar.classList.add("hide");
-      }
-    }
+  //   if (type === TYPE_START) {
+  //     const isHidden = startCalendar.classList.contains("hide");
+  //     if (isHidden) {
+  //       startCalendar.classList.remove("hide");
+  //       endCalendar.classList.add("hide");
+  //     } else {
+  //       startCalendar.classList.add("hide");
+  //     }
+  //   }
 
-    if (type === TYPE_END) {
-      const isHidden = endCalendar.classList.contains("hide");
+  //   if (type === TYPE_END) {
+  //     const isHidden = endCalendar.classList.contains("hide");
 
-      isHidden
-        ? endCalendar.classList.remove("hide")
-        : endCalendar.classList.add("hide");
-    }
+  //     isHidden
+  //       ? endCalendar.classList.remove("hide")
+  //       : endCalendar.classList.add("hide");
+  //   }
+  // };
+
+  const toggleCalendar = (id) => {
+    setOpenCalendar((prevState) => !prevState);
+    setCalendarId(id);
   };
-
+  
   return (
     <Card className="date-selector">
-      <Info title={title} onClick={onOpenSettings}/>
+      <Info title={title} onClick={onOpenSettings} />
       <Date
         id={TYPE_START}
         name="Start Date"
         value={startDate}
         onChange={onDateChange}
-        onToggleCalendar={toggleCalendar}
+        onOpenCalendar={toggleCalendar}
       />
       <Date
         id={TYPE_END}
         name="End Date"
         value={endDate}
         onChange={onDateChange}
-        onToggleCalendar={toggleCalendar}
+        onOpenCalendar={toggleCalendar}
       />
       <CalculateButton
         variant="contained"
@@ -73,6 +80,19 @@ const DateSelector = ({
       >
         Calculate
       </CalculateButton>
+
+      {openCalendar && (
+        <CalendarModal
+          open={openCalendar}
+          onClose={toggleCalendar}
+          id={calendarId}
+          value={calendarId === TYPE_START ? startDate : endDate}
+          onChange={(id, value) => {
+            onDateChange(id, value);
+            toggleCalendar(null);
+          }}
+        />
+      )}
     </Card>
   );
 };
@@ -83,7 +103,8 @@ const Info = ({ title, onClick }) => (
     <i className="icon-settings" onClick={onClick} />
   </div>
 );
-const Date = ({ id, name, value, onChange, onToggleCalendar }) => {
+
+const Date = ({ id, name, value, onChange, onOpenCalendar }) => {
   const formattedValue = value && moment(value).format("YYYY/MM/DD");
   return (
     <div className="date-wrapper">
@@ -95,7 +116,7 @@ const Date = ({ id, name, value, onChange, onToggleCalendar }) => {
           placeholder="YYYY/MM/DD"
           readOnly={true}
         />
-        <i className="icon-calendar" onClick={() => onToggleCalendar(id)} />
+        <i className="icon-calendar" onClick={() => onOpenCalendar(id)} />
         <Button
           variant="outlined"
           color="primary"
@@ -109,17 +130,6 @@ const Date = ({ id, name, value, onChange, onToggleCalendar }) => {
           Today
         </Button>
       </div>
-      <Calendar
-        className="hide"
-        value={value}
-        locale="en-US"
-        minDetail={"month"}
-        showNeighboringMonth={false}
-        onChange={(value) => {
-          onChange(id, value);
-          onToggleCalendar(id);
-        }}
-      />
     </div>
   );
 };
