@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/working-days-calculator/static/css/main.786ffbc6.chunk.css",
-    "main.js": "/working-days-calculator/static/js/main.87ac1a5a.chunk.js",
-    "main.js.map": "/working-days-calculator/static/js/main.87ac1a5a.chunk.js.map",
+    "main.css": "/working-days-calculator/static/css/main.81bf26cd.chunk.css",
+    "main.js": "/working-days-calculator/static/js/main.6d49a6b2.chunk.js",
+    "main.js.map": "/working-days-calculator/static/js/main.6d49a6b2.chunk.js.map",
     "runtime-main.js": "/working-days-calculator/static/js/runtime-main.7481a02c.js",
     "runtime-main.js.map": "/working-days-calculator/static/js/runtime-main.7481a02c.js.map",
     "static/css/2.8cebfa1f.chunk.css": "/working-days-calculator/static/css/2.8cebfa1f.chunk.css",
-    "static/js/2.3f521b03.chunk.js": "/working-days-calculator/static/js/2.3f521b03.chunk.js",
-    "static/js/2.3f521b03.chunk.js.map": "/working-days-calculator/static/js/2.3f521b03.chunk.js.map",
+    "static/js/2.9e83c6f8.chunk.js": "/working-days-calculator/static/js/2.9e83c6f8.chunk.js",
+    "static/js/2.9e83c6f8.chunk.js.map": "/working-days-calculator/static/js/2.9e83c6f8.chunk.js.map",
     "index.html": "/working-days-calculator/index.html",
     "static/css/2.8cebfa1f.chunk.css.map": "/working-days-calculator/static/css/2.8cebfa1f.chunk.css.map",
-    "static/css/main.786ffbc6.chunk.css.map": "/working-days-calculator/static/css/main.786ffbc6.chunk.css.map",
-    "static/js/2.3f521b03.chunk.js.LICENSE.txt": "/working-days-calculator/static/js/2.3f521b03.chunk.js.LICENSE.txt",
+    "static/css/main.81bf26cd.chunk.css.map": "/working-days-calculator/static/css/main.81bf26cd.chunk.css.map",
+    "static/js/2.9e83c6f8.chunk.js.LICENSE.txt": "/working-days-calculator/static/js/2.9e83c6f8.chunk.js.LICENSE.txt",
     "static/media/dobby.b1cb7c5e.png": "/working-days-calculator/static/media/dobby.b1cb7c5e.png"
   },
   "entrypoints": [
     "static/js/runtime-main.7481a02c.js",
     "static/css/2.8cebfa1f.chunk.css",
-    "static/js/2.3f521b03.chunk.js",
-    "static/css/main.786ffbc6.chunk.css",
-    "static/js/main.87ac1a5a.chunk.js"
+    "static/js/2.9e83c6f8.chunk.js",
+    "static/css/main.81bf26cd.chunk.css",
+    "static/js/main.6d49a6b2.chunk.js"
   ]
 }
