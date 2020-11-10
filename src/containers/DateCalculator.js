@@ -8,7 +8,7 @@ import DateSelector from "components/DateSelector";
 import Card from "components/Card";
 import ProgressBar from "components/ProgressBar";
 import SettingsModal from "components/SettingsModal";
-import CalendarModal from "components/DateSelector/CalendarModal";
+import TimeCounter from "components/TimeCounter";
 
 import { getWorkingDaysCount } from "utils/Calculate";
 import { getLocalStorage, setLocalStorage } from "utils/Storage";
@@ -94,8 +94,9 @@ const DateCalculator = () => {
         <Card align="left">
           <i className="icon-date" />
           {calendarDays} calendar days
-        </Card>
-        <ProgressBar value={percent} />
+        </Card> 
+        <TimeCounter />
+        <ProgressBar value={percent} /> 
 
         {openSettings && (
           <SettingsModal

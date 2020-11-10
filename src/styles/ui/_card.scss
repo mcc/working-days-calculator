@@ -1,18 +1,28 @@
 .card {
-    background: white; 
-    border-radius: $border-radius-sm;
-    padding : 1rem;
-    bottom : 4.5rem;
-    box-shadow: 6px 4px 16px lightgrey; 
-    display :flex; 
-    margin-bottom: 10px;
+  background: white;
+  border-radius: $border-radius-sm;
+  padding: 1rem;
+  bottom: 4.5rem;
+  box-shadow: 6px 4px 16px lightgrey;
+  display: flex;
+  margin-bottom: 10px;
 
-    &.align-center {
-        justify-content: center;
-    }
+  &.align-center {
+    justify-content: center;
+  }
 
-    &.align-left {
-        justify-content: left;
-    } 
+  &.align-left {
+    justify-content: left;
+  }
 
+  &.gradient {
+    background: linear-gradient(
+      90deg,
+      rgba(135, 170, 238, 1) 0%,
+      rgba(145, 157, 243, 1) 50%,
+      rgba(151, 148, 243, 1) 100%
+    );
+
+    color: white;
+  }
 }
