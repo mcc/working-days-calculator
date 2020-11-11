@@ -24,9 +24,18 @@ const DateCalculator = () => {
   const [openSettings, setOpenSettings] = useState(false);
   const [settings, setSettings] = useState({});
 
+  const [showTimer, setTimer] = useState(false);
+  const [timeleft, setTimeleft] = useState({});
+
   useEffect(() => {
     loadFromLocalStorage();
+
+    handleCalculate();
   }, []);
+
+  useEffect(() => {
+    setTimer(false); 
+  }, [startDate, endDate]); 
 
   const loadFromLocalStorage = () => {
     const settings = getLocalStorage(SETTINGS_KEY);
@@ -61,6 +70,7 @@ const DateCalculator = () => {
     const percent = (passedDates / (365 * 2)) * 100;
 
     setPercent(Number.parseFloat(percent.toFixed(1)));
+    setTimer(true);
   };
 
   const handleSaveSettings = (data) => {
@@ -94,9 +104,9 @@ const DateCalculator = () => {
         <Card align="left">
           <i className="icon-date" />
           {calendarDays} calendar days
-        </Card> 
-        <TimeCounter />
-        <ProgressBar value={percent} /> 
+        </Card>
+        <TimeCounter endDate={showTimer ? endDate : null} timeleft={timeleft} />
+        <ProgressBar value={percent} />
 
         {openSettings && (
           <SettingsModal
