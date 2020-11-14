@@ -10,3 +10,5 @@ export const MESSAGE_WEEKS = 'WEEKS';
 export const MESSAGE_MONTHS = 'MONTHS'; 
 
 export const SETTINGS_KEY = 'D_DAY_SETTINGS'; 
+
+export const DATE_FORMAT ='YYYY/MM/DD'; 

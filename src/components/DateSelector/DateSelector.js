@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import moment from "moment";
 
-import { COLOR_BLUE, TYPE_START, TYPE_END } from "constants/Types";
+import { COLOR_BLUE, TYPE_START, TYPE_END, DATE_FORMAT} from "constants/Types";
 
 import Card from "components/Card";
 import Text from "components/Text";
@@ -105,7 +105,7 @@ const Info = ({ title, onClick }) => (
 );
 
 const Date = ({ id, name, value, onChange, onOpenCalendar }) => {
-  const formattedValue = value && moment(value).format("YYYY/MM/DD");
+  const formattedValue = value && moment(value).format(DATE_FORMAT);
   return (
     <div className="date-wrapper">
       <Text>{name} </Text>
@@ -113,7 +113,7 @@ const Date = ({ id, name, value, onChange, onOpenCalendar }) => {
         <Input
           type="text"
           value={formattedValue}
-          placeholder="YYYY/MM/DD"
+          placeholder={DATE_FORMAT}
           readOnly={true}
         />
         <i className="icon-calendar" onClick={() => onOpenCalendar(id)} />

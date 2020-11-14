@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import moment from "moment";
 
-import { TYPE_START, TYPE_END, SETTINGS_KEY } from "constants/Types";
+import {
+  TYPE_START,
+  TYPE_END,
+  SETTINGS_KEY,
+  DATE_FORMAT,
+} from "constants/Types";
 
 import DateSelector from "components/DateSelector";
 import Card from "components/Card";
@@ -16,6 +21,7 @@ import { getLocalStorage, setLocalStorage } from "utils/Storage";
 const DateCalculator = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const prevEndDate = usePrevious(endDate);
 
   const [workDays, setWorkDays] = useState("-");
   const [calendarDays, setCalendarDays] = useState("-");
@@ -25,17 +31,30 @@ const DateCalculator = () => {
   const [settings, setSettings] = useState({});
 
   const [showTimer, setTimer] = useState(false);
-  const [timeleft, setTimeleft] = useState({});
 
   useEffect(() => {
     loadFromLocalStorage();
-
-    handleCalculate();
   }, []);
 
   useEffect(() => {
-    setTimer(false); 
-  }, [startDate, endDate]); 
+    const isStartDateToday =
+      moment(startDate).format(DATE_FORMAT) === moment().format(DATE_FORMAT);
+
+    const isEndDateSame =
+      moment(prevEndDate).format(DATE_FORMAT) ===
+      moment(endDate).format(DATE_FORMAT);
+
+    if (isStartDateToday && isEndDateSame) return;
+    setTimer(false);
+  }, [startDate, endDate]);
+
+  function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  }
 
   const loadFromLocalStorage = () => {
     const settings = getLocalStorage(SETTINGS_KEY);
@@ -44,7 +63,7 @@ const DateCalculator = () => {
     const { endDate } = settings;
     const [year, month, date] = endDate.split("/");
 
-    setStartDate(moment().toDate());
+    setStartDate(moment().set({ h: 0, m: 0, s: 0 }).toDate());
     setEndDate(moment({ year, month: month - 1, date }).toDate());
     setSettings(settings);
   };
@@ -54,6 +73,7 @@ const DateCalculator = () => {
   };
 
   const handleDateChange = (type, value) => {
+    console.log(type, value);
     if (type === TYPE_START) setStartDate(value);
     if (type === TYPE_END) setEndDate(value);
   };
@@ -70,14 +90,17 @@ const DateCalculator = () => {
     const percent = (passedDates / (365 * 2)) * 100;
 
     setPercent(Number.parseFloat(percent.toFixed(1)));
-    setTimer(true);
+
+    const isStartDateToday =
+      moment(startDate).format(DATE_FORMAT) === moment().format(DATE_FORMAT);
+    if (isStartDateToday) setTimer(true);
   };
 
   const handleSaveSettings = (data) => {
     const { title, date } = data;
     const ddaySettings = {
       title,
-      endDate: moment(date).format("YYYY/MM/DD"),
+      endDate: moment(date).format(DATE_FORMAT),
     };
 
     setLocalStorage(SETTINGS_KEY, ddaySettings);
@@ -105,7 +128,7 @@ const DateCalculator = () => {
           <i className="icon-date" />
           {calendarDays} calendar days
         </Card>
-        <TimeCounter endDate={showTimer ? endDate : null} timeleft={timeleft} />
+        <TimeCounter endDate={showTimer ? endDate : null} />
         <ProgressBar value={percent} />
 
         {openSettings && (
@@ -116,7 +139,6 @@ const DateCalculator = () => {
             onSave={handleSaveSettings}
           />
         )}
-        {/* <div> message..</div> */}
       </div>
     </div>
   );
