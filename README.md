@@ -1,5 +1,5 @@
 # working-days-calculator
-![wdc_demo_20201114](https://user-images.githubusercontent.com/38097442/99145378-a38e2200-26b1-11eb-8267-8f4be830bb30.gif)
+![wdc_demo_20201114](https://user-images.githubusercontent.com/38097442/99145415-0089d800-26b2-11eb-8398-0fa86238c49d.gif)
 
 📆 Calculate working days between dates
 
