@@ -59,6 +59,7 @@ const CalendarModal = ({ open, onClose, id, value, onChange }) => {
         <Calendar
           value={value}
           locale="en-US"
+          style={{width : '350px'}}
           minDetail={"month"}
           showNeighboringMonth={false}
           onChange={(value) => {

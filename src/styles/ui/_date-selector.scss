@@ -53,11 +53,8 @@
     }
 
     .react-calendar {
-      position: absolute;
+      position: fixed;
       z-index: 999;
-      right: 0;
-      left: 45%;
-      margin-top: 44px;
 
       &::before {
         position: absolute;

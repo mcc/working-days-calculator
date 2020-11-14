@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import moment from "moment";
 
-import { COLOR_BLUE, TYPE_START, TYPE_END, DATE_FORMAT} from "constants/Types";
+import { COLOR_BLUE, TYPE_START, TYPE_END, DATE_FORMAT } from "constants/Types";
 
 import Card from "components/Card";
 import Text from "components/Text";
 import Input from "components/Input";
-import CalendarModal from "components/DateSelector/CalendarModal";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import Calendar from "react-calendar";
 
 const DateSelector = ({
   startDate,
@@ -28,34 +28,63 @@ const DateSelector = ({
     },
   })(Button);
 
-  // const toggleCalendar = (type) => {
-  //   const calendars = document.getElementsByClassName("react-calendar");
-  //   const [startCalendar, endCalendar] = calendars;
+  useEffect(() => {
+    window.addEventListener("resize", resizeCalendar);
+    return () => window.removeEventListener("resize", resizeCalendar);
+  }, []);
 
-  //   if (type === TYPE_START) {
-  //     const isHidden = startCalendar.classList.contains("hide");
-  //     if (isHidden) {
-  //       startCalendar.classList.remove("hide");
-  //       endCalendar.classList.add("hide");
-  //     } else {
-  //       startCalendar.classList.add("hide");
-  //     }
-  //   }
+  /**
+   * resize calendar position
+   */
+  const resizeCalendar = () => {
+    let CALENDAR_WIDTH = 350;
+    const activeCalendar = document.querySelector(".react-calendar:not(.hide)");
 
-  //   if (type === TYPE_END) {
-  //     const isHidden = endCalendar.classList.contains("hide");
+    if (activeCalendar) {
+      const icon = activeCalendar.previousElementSibling.previousElementSibling;
+      const { height, left: x, top: y } = icon.getBoundingClientRect();
 
-  //     isHidden
-  //       ? endCalendar.classList.remove("hide")
-  //       : endCalendar.classList.add("hide");
-  //   }
-  // };
+      activeCalendar.style.top = `${y + height + 13}px`;
 
-  const toggleCalendar = (id) => {
-    setOpenCalendar((prevState) => !prevState);
-    setCalendarId(id);
+      const { clientWidth } = document.body;
+      if (clientWidth < 420) {
+        CALENDAR_WIDTH -= 40;
+        activeCalendar.style.width = `${CALENDAR_WIDTH}px`;
+        activeCalendar.style.left = `${(clientWidth - CALENDAR_WIDTH) / 2}px`;
+      } else {
+        activeCalendar.style.left = `${x - CALENDAR_WIDTH / 2 + 13}px`;
+        activeCalendar.style.width = `${CALENDAR_WIDTH}px`;
+      }
+    }
   };
-  
+
+  const toggleCalendar = (type) => {
+    const calendars = document.getElementsByClassName("react-calendar");
+    const [startCalendar, endCalendar] = calendars;
+
+    if (type === TYPE_START) {
+      const isHidden = startCalendar.classList.contains("hide");
+      if (isHidden) {
+        startCalendar.classList.remove("hide");
+        endCalendar.classList.add("hide");
+        resizeCalendar(TYPE_START);
+      } else {
+        startCalendar.classList.add("hide");
+      }
+    }
+
+    if (type === TYPE_END) {
+      const isHidden = endCalendar.classList.contains("hide");
+
+      if (isHidden) {
+        endCalendar.classList.remove("hide");
+        resizeCalendar(TYPE_END);
+      } else {
+        endCalendar.classList.add("hide");
+      }
+    }
+  };
+
   return (
     <Card className="date-selector">
       <Info title={title} onClick={onOpenSettings} />
@@ -65,6 +94,7 @@ const DateSelector = ({
         value={startDate}
         onChange={onDateChange}
         onOpenCalendar={toggleCalendar}
+        onToggleCalendar={toggleCalendar}
       />
       <Date
         id={TYPE_END}
@@ -72,6 +102,7 @@ const DateSelector = ({
         value={endDate}
         onChange={onDateChange}
         onOpenCalendar={toggleCalendar}
+        onToggleCalendar={toggleCalendar}
       />
       <CalculateButton
         variant="contained"
@@ -80,19 +111,6 @@ const DateSelector = ({
       >
         Calculate
       </CalculateButton>
-
-      {openCalendar && (
-        <CalendarModal
-          open={openCalendar}
-          onClose={toggleCalendar}
-          id={calendarId}
-          value={calendarId === TYPE_START ? startDate : endDate}
-          onChange={(id, value) => {
-            onDateChange(id, value);
-            toggleCalendar(null);
-          }}
-        />
-      )}
     </Card>
   );
 };
@@ -104,7 +122,7 @@ const Info = ({ title, onClick }) => (
   </div>
 );
 
-const Date = ({ id, name, value, onChange, onOpenCalendar }) => {
+const Date = ({ id, name, value, onChange, onToggleCalendar }) => {
   const formattedValue = value && moment(value).format(DATE_FORMAT);
   return (
     <div className="date-wrapper">
@@ -116,7 +134,7 @@ const Date = ({ id, name, value, onChange, onOpenCalendar }) => {
           placeholder={DATE_FORMAT}
           readOnly={true}
         />
-        <i className="icon-calendar" onClick={() => onOpenCalendar(id)} />
+        <i className="icon-calendar" onClick={() => onToggleCalendar(id)} />
         <Button
           variant="outlined"
           color="primary"
@@ -129,6 +147,22 @@ const Date = ({ id, name, value, onChange, onOpenCalendar }) => {
         >
           Today
         </Button>
+        <Calendar
+          className="hide"
+          value={value}
+          locale="en-US"
+          minDetail={"month"} 
+          nextLabel = {<i className="icon-caret-right"/>}
+          prevLabel = {<i className="icon-caret-right flip"/>}
+          next2Label= {<div />}
+          prev2Label= {<div />}
+          
+          showNeighboringMonth={false}
+          onChange={(value) => {
+            onChange(id, value);
+            onToggleCalendar(id);
+          }}
+        />
       </div>
     </div>
   );

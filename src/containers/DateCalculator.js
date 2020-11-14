@@ -73,7 +73,6 @@ const DateCalculator = () => {
   };
 
   const handleDateChange = (type, value) => {
-    console.log(type, value);
     if (type === TYPE_START) setStartDate(value);
     if (type === TYPE_END) setEndDate(value);
   };
@@ -128,8 +127,8 @@ const DateCalculator = () => {
           <i className="icon-date" />
           {calendarDays} calendar days
         </Card>
-        <TimeCounter endDate={showTimer ? endDate : null} />
         <ProgressBar value={percent} />
+        <TimeCounter endDate={showTimer ? endDate : null} />
 
         {openSettings && (
           <SettingsModal
