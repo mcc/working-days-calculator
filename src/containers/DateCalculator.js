@@ -26,6 +26,7 @@ const DateCalculator = () => {
   const [workDays, setWorkDays] = useState("-");
   const [calendarDays, setCalendarDays] = useState("-");
   const [percent, setPercent] = useState(0);
+  
 
   const [openSettings, setOpenSettings] = useState(false);
   const [settings, setSettings] = useState({});
@@ -78,7 +79,10 @@ const DateCalculator = () => {
   };
 
   const handleCalculate = () => {
-    if (!startDate || !endDate || endDate < startDate) return;
+    if (!startDate || !endDate || endDate < startDate) {
+      initData();
+      return;
+    }
 
     const days = getWorkingDaysCount(startDate, endDate);
     setCalendarDays(days.calendarDays || "-");
@@ -88,7 +92,11 @@ const DateCalculator = () => {
     const passedDates = moment(startDate).diff(moment(baseDate), "days") + 1;
     const percent = (passedDates / (365 * 2)) * 100;
 
-    setPercent(Number.parseFloat(percent.toFixed(1)));
+    if (percent < 0 || percent > 100) {
+      setPercent(0);
+    } else {
+      setPercent(Number.parseFloat(percent.toFixed(1)));
+    }
 
     const isStartDateToday =
       moment(startDate).format(DATE_FORMAT) === moment().format(DATE_FORMAT);
@@ -108,6 +116,11 @@ const DateCalculator = () => {
     loadFromLocalStorage();
   };
 
+  const initData = () => {
+    setWorkDays('-'); 
+    setCalendarDays('-');
+    setPercent(0); 
+  }
   return (
     <div className="main-content">
       <div className="content-wrapper">
