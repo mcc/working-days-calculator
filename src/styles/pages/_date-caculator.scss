@@ -1,7 +1,22 @@
 .main-content {
-    background: $app-bg; 
+  background: $app-bg;
 
-    .card i {
-        margin-right : 1rem;
+  .card i {
+    margin-right: 1rem;
+  }
+
+  .settings-info {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: end;
+    gap : 0 1rem; 
+
+    @media screen and (max-width:575px) {
+        grid-template-columns: 1fr auto;
+
+        button:first-child {
+            justify-self : normal;
+        }
     }
+  }
 }

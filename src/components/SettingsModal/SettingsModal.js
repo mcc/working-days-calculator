@@ -11,8 +11,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 
 import Input from "components/Input";
 const SettingsModal = ({ open, settings, onClose, onSave }) => {
-  const [date, setDate] = useState(moment(settings.endDate).toDate());
-  const [title, setTitle] = useState(settings.title);
+  const [date, setDate] = useState(settings ? moment(settings.endDate).toDate() : null);
+  const [title, setTitle] = useState(settings ? settings.title : '');
   const [showCalendar, setShowCalendar] = useState(false);
 
   const handleChangeDate = (value) => {

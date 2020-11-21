@@ -16,11 +16,7 @@ const DateSelector = ({
   endDate,
   onDateChange,
   onCalculate,
-  onOpenSettings,
-  title,
 }) => {
-  const [openCalendar, setOpenCalendar] = useState(false);
-  const [calendarId, setCalendarId] = useState(null);
 
   const CalculateButton = withStyles({
     root: {
@@ -87,7 +83,6 @@ const DateSelector = ({
 
   return (
     <Card className="date-selector">
-      <Info title={title} onClick={onOpenSettings} />
       <Date
         id={TYPE_START}
         name="Start Date"
@@ -114,13 +109,6 @@ const DateSelector = ({
     </Card>
   );
 };
-
-const Info = ({ title, onClick }) => (
-  <div className="info">
-    <Text> {title}</Text>
-    <i className="icon-settings" onClick={onClick} />
-  </div>
-);
 
 const Date = ({ id, name, value, onChange, onToggleCalendar }) => {
   const formattedValue = value && moment(value).format(DATE_FORMAT);
