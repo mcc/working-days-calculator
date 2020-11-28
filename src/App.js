@@ -1,22 +1,27 @@
 import React, { useEffect } from "react";
+
+import DateCalculator from "containers";
+import Snowflakes from 'magic-snowflakes';
 import "styles/app.scss";
 import "react-calendar/dist/Calendar.css";
-import DateCalculator from "containers";
-import ReactGA from "react-ga";
-import DobbyIcon from "assets/images/dobby.png";
+// import ReactGA from "react-ga";
 
 function App() {
+  
   useEffect(() => {
-    ReactGA.initialize("G-HXVX2W66FB");
-    ReactGA.pageview(window.location.pathname + window.location.search);
-  }, []);
+    Snowflakes({
+      color : 'white',
+      count : 40,
+      speed : 1, 
+      minSize : 13, 
+      maxSize :18, 
+      minOpacity : 0.5
+    });
+  },[]);
 
   return (
     <div className="App christmas-theme">
       <DateCalculator />
-      {/* <div className="dobby-wrapper">
-        <img src={DobbyIcon} alt="dobby"/>
-      </div> */}
     </div>
   );
 }
