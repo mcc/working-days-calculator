@@ -12,7 +12,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="App christmas-theme">
       <DateCalculator />
       {/* <div className="dobby-wrapper">
         <img src={DobbyIcon} alt="dobby"/>

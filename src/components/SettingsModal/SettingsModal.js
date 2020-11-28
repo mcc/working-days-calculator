@@ -33,7 +33,7 @@ const SettingsModal = ({ open, settings, onClose, onSave }) => {
       maxWidth="xs"
       fullWidth={true}
       open={open}
-      className="settings-modal"
+      className="settings-modal christmas-theme"
     >
       <DialogTitle> D-Day Settings</DialogTitle>
       <DialogContent>
@@ -64,6 +64,10 @@ const SettingsModal = ({ open, settings, onClose, onSave }) => {
             minDetail={"month"}
             showNeighboringMonth={false}
             onChange={handleChangeDate}
+            nextLabel = {<i className="icon-caret-right"/>}
+            prevLabel = {<i className="icon-caret-right flip"/>}
+            next2Label= {<div />}
+            prev2Label= {<div />}
           />
         )}
       </DialogContent>

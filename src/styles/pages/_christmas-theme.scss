@@ -1,0 +1,100 @@
+.christmas-theme {
+  .main-content {
+    background-position: right center;
+    background-image: url("https://images.unsplash.com/photo-1482517967863-00e15c9b44be?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80");
+    background-size: cover;
+  }
+  .card,
+  .MuiDialog-paper {
+    &,
+    .text,
+    input,
+    .title {
+      color: $theme1-primary-300;
+    }
+    &.gradient {
+      background: linear-gradient(
+        90deg,
+        $theme1-gradient-100 0%,
+        $theme1-gradient-200 50%,
+        $theme1-gradient-300 100%
+      );
+    }
+
+    i {
+      color: $theme1-primary-100;
+    }
+  }
+
+  .card {
+    box-shadow: 6px 4px 16px #f5f5dc9e;
+  }
+
+  .progress-bar {
+    color: white;
+    .MuiLinearProgress-barColorPrimary {
+      //   background: linear-gradient(
+      //     90deg,
+      //     $theme1-gradient-100 0%,
+      //     $theme1-gradient-200 50%,
+      //     $theme1-gradient-300 100%
+      //   );
+      background-color: #6ca69a;
+    }
+  }
+  .react-calendar {
+    i {
+      color: white;
+    }
+    background: linear-gradient(
+      90deg,
+      $theme1-gradient-100 0%,
+      $theme1-gradient-200 50%,
+      $theme1-gradient-300 100%
+    ) !important;
+
+    &::before {
+      border-bottom: 7px solid $theme1-gradient-200 !important;
+    }
+  }
+
+  .MuiButton-outlined {
+    border-color: $theme1-primary-100;
+    color: $theme1-primary-100;
+
+    &:hover {
+      background-color: rgba(96, 159, 159, 0.07);
+      border-color: $theme1-primary-200;
+      color: $theme1-primary-200;
+    }
+  }
+
+  .MuiButton-contained {
+    background-color: $theme1-primary-100;
+
+    &:hover {
+      background-color: $theme1-primary-200;
+    }
+  }
+
+  .MuiButton-textPrimary {
+    color: $theme1-primary-200;
+
+    &:hover {
+      background-color: rgba(96, 159, 159, 0.07);
+    }
+  }
+
+  .settings-info {
+    .MuiButton-outlined {
+      border-color: #faebd7;
+      color: #faebd7;
+
+      &:hover {
+        background-color: rgba(250, 235, 215, 0.1);
+        border-color: #faebd7;
+        color: #faebd7;
+      }
+    }
+  }
+}
