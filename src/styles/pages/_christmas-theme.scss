@@ -28,6 +28,12 @@
 
   .card {
     box-shadow: 6px 4px 16px #f5f5dc9e;
+
+    &.outlined {
+      border: 1px solid white;
+      background: transparent;
+      color: white;
+    }
   }
 
   .progress-bar {
