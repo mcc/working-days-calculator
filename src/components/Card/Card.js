@@ -1,8 +1,9 @@
 import React from "react";
 
-const Card = ({ children, className, align, ...props }) => {
+const Card = ({ children, className, align, outlined, ...props }) => {
   const cardAlign = `align-${align}`;
-  const classNames = `card ${className || ''} ${cardAlign}`; 
+  const cardStyle = outlined ? "outlined" : "";
+  const classNames = `card ${className || ""} ${cardAlign} ${cardStyle}`;
   return (
     <div className={classNames} {...props}>
       {children}

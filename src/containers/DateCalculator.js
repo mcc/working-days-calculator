@@ -22,6 +22,7 @@ import TimeCounter from "components/TimeCounter";
 
 import { getWorkingDaysCount } from "utils/Calculate";
 import { getLocalStorage, setLocalStorage } from "utils/Storage";
+import { getRandomMessage } from "utils/Message";
 
 const AddEvent = ({ onClick }) => {
   const AddButton = withStyles({
@@ -68,6 +69,7 @@ const DateCalculator = () => {
   const [workDays, setWorkDays] = useState("-");
   const [calendarDays, setCalendarDays] = useState("-");
   const [percent, setPercent] = useState(0);
+  const [message, setMessage] = useState("🎁");
 
   const [openSettings, setOpenSettings] = useState(false);
   const [settings, setSettings] = useState(null);
@@ -120,14 +122,19 @@ const DateCalculator = () => {
   };
 
   const handleCalculate = () => {
-    if (!startDate || !endDate || endDate < startDate || startDate === endDate) {
+    if (
+      !startDate ||
+      !endDate ||
+      endDate < startDate ||
+      startDate === endDate
+    ) {
       initData();
       return;
     }
 
-    const days = getWorkingDaysCount(startDate, endDate);
-    setCalendarDays(days.calendarDays || "-");
-    setWorkDays(days.workDays || "-");
+    const { calendarDays, workDays } = getWorkingDaysCount(startDate, endDate);
+    setCalendarDays(calendarDays || "-");
+    setWorkDays(workDays || "-");
 
     const baseDate = moment(endDate).subtract(2, "years");
     const passedDates = moment(startDate).diff(moment(baseDate), "days") + 1;
@@ -142,6 +149,9 @@ const DateCalculator = () => {
     const isStartDateToday =
       moment(startDate).format(DATE_FORMAT) === moment().format(DATE_FORMAT);
     if (isStartDateToday) setTimer(true);
+
+    const randomMessage = getRandomMessage(calendarDays);
+    setMessage(randomMessage);
   };
 
   const handleSaveSettings = (data) => {
@@ -161,6 +171,7 @@ const DateCalculator = () => {
     setWorkDays("-");
     setCalendarDays("-");
     setPercent(0);
+    setMessage("🎁")
   };
 
   return (
@@ -194,6 +205,7 @@ const DateCalculator = () => {
         <ProgressBar value={percent} />
         <TimeCounter endDate={showTimer ? endDate : null} />
 
+        <Card outlined={true}>{message}</Card>
         {openSettings && (
           <SettingsModal
             open={openSettings}
