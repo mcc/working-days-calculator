@@ -44,13 +44,6 @@ const AddEvent = ({ onClick }) => {
 };
 
 const SettingsInfo = ({ settings, onLoadSettings, onOpenSettings }) => {
-  const InfoButton = withStyles({
-    root: {
-      backgroundColor: COLOR_BLUE,
-      color: "white",
-      justifySelf: "end",
-    },
-  })(Button);
   return (
     <div className="settings-info">
       <Button variant="contained" color="primary" onClick={onLoadSettings}>
@@ -127,7 +120,7 @@ const DateCalculator = () => {
   };
 
   const handleCalculate = () => {
-    if (!startDate || !endDate || endDate < startDate) {
+    if (!startDate || !endDate || endDate < startDate || startDate === endDate) {
       initData();
       return;
     }
