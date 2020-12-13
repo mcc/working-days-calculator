@@ -1,0 +1,125 @@
+$type-stick-width: 0.3rem;
+
+//Temporary feedback message
+#message {
+  position: absolute;
+  right: 0;
+  bottom: 5rem;
+  width: 240px;
+  font-weight: bold;
+  text-align: center;
+  background: white;
+  padding: 5px;
+  border-radius: $border-radius-xs;
+  display: none;
+  opacity: 0;
+
+  &.fade {
+    display: block;
+    animation : fade-out 3s; 
+  }
+
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  &:after {
+    position: absolute;
+    top: 100%;
+    right: 8%;
+    margin-left: -5px;
+    width: 0;
+    border-top: 7px solid white;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+    content: " ";
+    font-size: 0;
+    line-height: 0;
+  }
+}
+
+//NotificationProvider
+#notification-provider {
+}
+
+//Notification
+.notification {
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  box-shadow: 4px 5px 12px #d3d3d3b3;
+  min-width: 350px;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+
+  &.info {
+    background: #65a5db;
+  }
+
+  &.success {
+    background: #92c18f;
+  }
+
+  &.warning {
+    background: #f1b14c;
+  }
+
+  &.error {
+    background: #cd5c5c;
+  }
+
+  &:before {
+    display: block;
+    content: "";
+    height: 100%;
+    width: $type-stick-width;
+    position: absolute;
+    background: inherit;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    padding: 1rem 1rem 1rem #{1rem + $type-stick-width};
+    gap: 0 1rem;
+    background: white;
+
+    .type {
+      &.info {
+        color: #65a5db;
+      }
+
+      &.success {
+        color: #92c18f;
+      }
+
+      &.warning {
+        color: #f1b14c;
+      }
+
+      &.error {
+        color: #cd5c5c;
+      }
+    }
+
+    .content {
+      .title {
+        font-weight: bold;
+      }
+
+      .message {
+        color: #696969;
+      }
+    }
+
+    .close-icon {
+      color: #696969;
+    }
+  }
+}

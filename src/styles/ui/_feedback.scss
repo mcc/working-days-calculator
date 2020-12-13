@@ -1,20 +1,31 @@
+$feedback-width: 400px;
 #feedback {
   display: none;
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
   z-index: 999;
-  width: 400px;
+  width: $feedback-width;
   max-width: 85vw;
   background: white;
   padding: 1rem;
   border-radius: $border-radius-xs;
   box-shadow: 4px 4px 16px darkgrey;
   animation: closeBox 0.25s ease-out;
-  
+
+  @media screen and (max-width: 412px) {
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  @media screen and (max-width: 360px) {
+    right: 0.7rem;
+    bottom: 0.7rem;
+  }
+
   &.show {
     display: block;
-    transition : all 0.2s ease-in;
+    transition: all 0.2s ease-in;
     // animation: openBox 0.25s ease-in;
   }
 

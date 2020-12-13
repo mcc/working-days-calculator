@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-import axios from "axios";
 import moment from "moment";
 import Button from "@material-ui/core/Button";
+import LoadingButton from "@material-ui/lab/LoadingButton";
 import CloseIcon from "@material-ui/icons/Close";
+
+import { STATUS_SUCCESS, STATUS_LOADING, STATUS_INIT } from "constants/Types";
 
 import * as Icon from "components/Icons/Icons";
 
@@ -18,9 +20,9 @@ const icons = [
 const Feedback = ({ onToggle }) => {
   const [selected, setSelected] = useState(null);
   const [comment, setComment] = useState("");
+  const [status, setStatus] = useState(STATUS_INIT);
 
   const sendFeedback = async () => {
-
     const url = new URL(
       `https://script.google.com/macros/s/${process.env.REACT_APP_GOOGLE_SHEET_ID}/exec`
     );
@@ -32,6 +34,7 @@ const Feedback = ({ onToggle }) => {
     };
 
     url.search = new URLSearchParams(params);
+    setStatus(STATUS_LOADING);
 
     const request = await fetch(url.toString(), {
       method: "POST",
@@ -40,8 +43,31 @@ const Feedback = ({ onToggle }) => {
         "Content-Type": "application/x-www-form-urlencoded",
       },
     })
-      .then((res) => console.log(res, typeof res))
+      .then((res) => {
+        setStatus(STATUS_SUCCESS);
+        showMessage(onToggle);
+      })
       .catch((error) => console.error(error));
+
+    initData();
+  };
+
+  const initData = () => {
+    setSelected(null);
+    setComment("");
+  };
+
+  const showMessage = (callback) => {
+    callback();
+    
+    const message = document.getElementById("message");
+    message.classList.toggle("fade");
+    message.style.display = "block";
+
+    setTimeout(() => {
+      message.style.display = "none";
+      message.classList.toggle("fade");
+    }, 3000);
   };
 
   return (
@@ -50,7 +76,6 @@ const Feedback = ({ onToggle }) => {
         <span className="title"> SHARE YOUR FEEDBACK</span>
         <CloseIcon onClick={onToggle} />
       </div>
-
       <div className="ratings">
         {icons.map((i) => (
           <div
@@ -62,7 +87,6 @@ const Feedback = ({ onToggle }) => {
           </div>
         ))}
       </div>
-
       <div className="comment">
         <textarea
           rows="5"
@@ -71,6 +95,7 @@ const Feedback = ({ onToggle }) => {
           spellcheck="false"
           autocomplete="false"
           required
+          value={comment}
           onChange={(e) => setComment(e.target.value)}
         />
       </div>
@@ -78,9 +103,11 @@ const Feedback = ({ onToggle }) => {
         variant="contained"
         color="primary"
         onClick={sendFeedback}
-        disabled={comment.length === 0}
+        disabled={
+          comment.length === 0 || status === STATUS_LOADING || !selected
+        }
       >
-        SEND
+        {status === STATUS_LOADING ? "SENDING ..." : "SEND"}
       </Button>
     </div>
   );
