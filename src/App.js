@@ -29,8 +29,8 @@ function App() {
   };
 
   return (
-    <div className="App">
-      {/* <div className="App christmas-theme"> */}
+    // <div className="App">
+    <div className="App christmas-theme">
       <DateCalculator />
 
       <div className="feedback-icon" onClick={toggleFeedback}>
@@ -38,7 +38,6 @@ function App() {
         <Message />
       </div>
       <Feedback onToggle={toggleFeedback} />
-   
 
       {/* <Notification />
       <NotificationProvider /> */}
@@ -46,8 +45,6 @@ function App() {
   );
 }
 
-const Message = () => (
-  <div id="message">Thanks for your feedback ! 💖</div>
-);
+const Message = () => <div id="message">Thanks for your feedback ! 💖</div>;
 
 export default App;

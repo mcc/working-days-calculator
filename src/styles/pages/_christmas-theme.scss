@@ -103,4 +103,39 @@
       }
     }
   }
+
+
+  //=====Feedback===== 
+  #feedback {
+    .header {
+      color : $theme1-primary-300;
+    }
+
+    .rate {
+      &:hover,
+      &.selected {
+
+        .label {
+          color: $theme1-gradient-200 !important;
+        }
+      }
+    }
+
+    textarea {
+      border: 1px solid lightgray;
+      &:focus {
+        border : 1px solid $theme1-primary-100 !important;
+      }
+    }
+  }
+
+  .feedback-icon {
+    background : $theme1-gradient-200 !important;
+  }
+  
+  #message {
+    box-shadow: 6px 4px 16px #f5f5dc9e;
+    color : $theme1-primary-300; 
+  }
+  
 }
