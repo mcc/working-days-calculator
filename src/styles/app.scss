@@ -2,7 +2,9 @@
 @import "pages/_pages-dir";
 @import "ui/_ui-dir";
 
-html,body, #root {
+html,
+body,
+#root {
   height: 100%;
 }
 body {
@@ -13,10 +15,31 @@ body {
 
 .App {
   height: 100%;
-  display: flex; 
+  display: flex;
+  position: relative;
 
-  @media screen and (max-width:575px){
-    height : auto; 
+  @media screen and (max-width: 575px) {
+    height: auto;
+  }
+
+  .feedback-icon {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+
+    background: $color-navy;
+    padding: 1rem;
+    border-radius: 50%;
+
+    i {
+      color: white;
+    }
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+      transition: transform 0.1s ease-out;
+    }
   }
 }
 
@@ -28,7 +51,7 @@ body {
     display: grid;
     align-items: center;
     // grid-template-rows: auto 100px 80px 120px;
-    gap : 1.5rem 0; 
+    gap: 1.5rem 0;
     width: 1000px;
     margin: 0 auto;
     position: relative;
@@ -65,4 +88,3 @@ i {
   font-size: 1.6rem;
   color: $color-blue;
 }
-
