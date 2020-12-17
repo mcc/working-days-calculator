@@ -17,7 +17,6 @@ import "react-calendar/dist/Calendar.css";
 function App() {
   const [imageLoading, setImageLoading] = useState(true);
   useEffect(() => {
-    console.log("mount fetching...");
     fetchImage();
   }, []);
 
@@ -57,7 +56,6 @@ function App() {
   };
 
   return (
-    // <div className="App">
     <div className="App christmas-theme">
       {imageLoading && <Loader />}
       <img className="background" alt="" onLoad={onImageLoad} />
@@ -69,12 +67,15 @@ function App() {
       </div>
       <Feedback onToggle={toggleFeedback} />
 
-      {/* <Notification />
-      <NotificationProvider /> */}
+      <CopyRight />
     </div>
   );
 }
 
 const Message = () => <div id="message">Thanks for your feedback ! 💖</div>;
+
+const CopyRight = () => (
+  <div className="copyright"> Copyright © 2020 jylee. All rights reserved.</div>
+);
 
 export default App;
