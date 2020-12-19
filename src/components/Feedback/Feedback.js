@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import moment from "moment";
 import Button from "@material-ui/core/Button";
@@ -58,7 +58,7 @@ const Feedback = ({ onToggle }) => {
 
   const showMessage = (callback) => {
     callback();
-    
+
     const message = document.getElementById("message");
     message.classList.toggle("fade");
     message.style.display = "block";
@@ -78,6 +78,7 @@ const Feedback = ({ onToggle }) => {
       <div className="ratings">
         {icons.map((i) => (
           <div
+            key={i.id}
             className={`rate ${selected === i.id ? "selected" : ""}`}
             onClick={() => setSelected(i.id)}
           >
@@ -90,9 +91,9 @@ const Feedback = ({ onToggle }) => {
         <textarea
           rows="5"
           placeholder="Leave a Comment ..."
-          maxlength="250"
-          spellcheck="false"
-          autocomplete="false"
+          maxLength="250"
+          spellCheck="false"
+          autoComplete="false"
           required
           value={comment}
           onChange={(e) => setComment(e.target.value)}

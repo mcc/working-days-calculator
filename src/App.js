@@ -5,11 +5,8 @@ import Snowflakes from "magic-snowflakes";
 
 import DateCalculator from "containers";
 
-import Notification from "components/Notification";
 import Feedback from "components/Feedback";
 import Loader from "components/Loader";
-
-import { NotificationProvider } from "utils/Notification";
 
 import "styles/app.scss";
 import "react-calendar/dist/Calendar.css";
