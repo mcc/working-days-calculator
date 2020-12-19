@@ -6,6 +6,7 @@
     height: 100vh;
     background-repeat: no-repeat;
     position: fixed;
+    object-fit: cover;
   }
   .card,
   .MuiDialog-paper {
@@ -107,17 +108,15 @@
     }
   }
 
-
-  //=====Feedback===== 
+  //=====Feedback=====
   #feedback {
     .header {
-      color : $theme1-primary-300;
+      color: $theme1-primary-300;
     }
 
     .rate {
       &:hover,
       &.selected {
-
         .label {
           color: $theme1-gradient-200 !important;
         }
@@ -127,18 +126,17 @@
     textarea {
       border: 1px solid lightgray;
       &:focus {
-        border : 1px solid $theme1-primary-100 !important;
+        border: 1px solid $theme1-primary-100 !important;
       }
     }
   }
 
   .feedback-icon {
-    background : $theme1-gradient-200 !important;
+    background: $theme1-gradient-200 !important;
   }
-  
+
   #message {
     box-shadow: 6px 4px 16px #f5f5dc9e;
-    color : $theme1-primary-300; 
+    color: $theme1-primary-300;
   }
-  
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import moment from "moment";
 
@@ -11,13 +11,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Calendar from "react-calendar";
 
-const DateSelector = ({
-  startDate,
-  endDate,
-  onDateChange,
-  onCalculate,
-}) => {
-
+const DateSelector = ({ startDate, endDate, onDateChange, onCalculate }) => {
   const CalculateButton = withStyles({
     root: {
       backgroundColor: COLOR_BLUE,
@@ -139,12 +133,11 @@ const Date = ({ id, name, value, onChange, onToggleCalendar }) => {
           className="hide"
           value={value}
           locale="en-US"
-          minDetail={"month"} 
-          nextLabel = {<i className="icon-caret-right"/>}
-          prevLabel = {<i className="icon-caret-right flip"/>}
-          next2Label= {<div />}
-          prev2Label= {<div />}
-          
+          minDetail={"month"}
+          nextLabel={<i className="icon-caret-right" />}
+          prevLabel={<i className="icon-caret-right flip" />}
+          next2Label={<div />}
+          prev2Label={<div />}
           showNeighboringMonth={false}
           onChange={(value) => {
             onChange(id, value);

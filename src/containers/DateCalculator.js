@@ -12,6 +12,7 @@ import {
   COLOR_BLUE,
   SETTINGS_KEY,
   DATE_FORMAT,
+  COUNTRY_KEY,
 } from "constants/Types";
 
 import DateSelector from "components/DateSelector";
@@ -19,6 +20,7 @@ import Card from "components/Card";
 import ProgressBar from "components/ProgressBar";
 import SettingsModal from "components/SettingsModal";
 import TimeCounter from "components/TimeCounter";
+import CountrySelector from "components/CountrySelector";
 
 import { getWorkingDaysCount } from "utils/Calculate";
 import { getLocalStorage, setLocalStorage } from "utils/Storage";
@@ -44,9 +46,17 @@ const AddEvent = ({ onClick }) => {
   );
 };
 
-const SettingsInfo = ({ settings, onLoadSettings, onOpenSettings }) => {
+const SettingsInfo = ({
+  settings,
+  countryCode,
+  onLoadSettings,
+  onOpenSettings,
+  onSelectCountry,
+}) => {
   return (
     <div className="settings-info">
+      <CountrySelector code={countryCode} onSelect={onSelectCountry} />
+
       <Button variant="contained" color="primary" onClick={onLoadSettings}>
         {settings.title}
       </Button>
@@ -73,6 +83,7 @@ const DateCalculator = () => {
 
   const [openSettings, setOpenSettings] = useState(false);
   const [settings, setSettings] = useState(null);
+  const [countryCode, setCountryCode] = useState(null);
 
   const [showTimer, setTimer] = useState(false);
 
@@ -102,6 +113,7 @@ const DateCalculator = () => {
 
   const loadFromLocalStorage = () => {
     const settings = getLocalStorage(SETTINGS_KEY);
+    const countryCode = getLocalStorage(COUNTRY_KEY);
     if (!settings) return;
 
     const { endDate } = settings;
@@ -110,6 +122,7 @@ const DateCalculator = () => {
     setStartDate(moment().set({ h: 0, m: 0, s: 0 }).toDate());
     setEndDate(moment({ year, month: month - 1, date }).toDate());
     setSettings(settings);
+    setCountryCode(countryCode);
   };
 
   const toggleOpen = () => {
@@ -132,7 +145,11 @@ const DateCalculator = () => {
       return;
     }
 
-    const { calendarDays, workDays } = getWorkingDaysCount(startDate, endDate);
+    const { calendarDays, workDays } = getWorkingDaysCount(
+      countryCode,
+      startDate,
+      endDate
+    );
     setCalendarDays(calendarDays || "-");
     setWorkDays(workDays || "-");
 
@@ -167,11 +184,21 @@ const DateCalculator = () => {
     loadFromLocalStorage();
   };
 
+  const handleSelectCountry = (code) => {
+    console.log("code", code);
+
+    if (typeof code !== "string") return;
+
+    setLocalStorage(COUNTRY_KEY, code);
+
+    loadFromLocalStorage();
+  };
+
   const initData = () => {
     setWorkDays("-");
     setCalendarDays("-");
     setPercent(0);
-    setMessage("🎁")
+    setMessage("🎁");
   };
 
   return (
@@ -180,8 +207,10 @@ const DateCalculator = () => {
         {settings ? (
           <SettingsInfo
             settings={settings}
+            countryCode={countryCode}
             onOpenSettings={toggleOpen}
             onLoadSettings={loadFromLocalStorage}
+            onSelectCountry={handleSelectCountry}
           />
         ) : (
           <AddEvent onClick={toggleOpen} />
@@ -204,8 +233,8 @@ const DateCalculator = () => {
         </Card>
         <ProgressBar value={percent} />
         <TimeCounter endDate={showTimer ? endDate : null} />
-
         <Card outlined={true}>{message}</Card>
+
         {openSettings && (
           <SettingsModal
             open={openSettings}

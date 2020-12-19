@@ -12,6 +12,7 @@ export const MESSAGE_MONTHS = "MONTHS";
 export const MESSAGE_D_DAY = "드디어 만기일 이예요!!! 축하합니다🎉🎁";
 
 export const SETTINGS_KEY = "D_DAY_SETTINGS";
+export const COUNTRY_KEY = "COUNTRY_CODE";
 
 export const DATE_FORMAT = "YYYY/MM/DD";
 
