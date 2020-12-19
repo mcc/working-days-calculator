@@ -201,6 +201,8 @@ const DateCalculator = () => {
     setMessage("🎁");
   };
 
+  const isKR = countryCode === "KR";
+
   return (
     <div className="main-content">
       <div className="content-wrapper">
@@ -231,9 +233,10 @@ const DateCalculator = () => {
           <i className="icon-date" />
           {calendarDays} calendar days
         </Card>
-        <ProgressBar value={percent} />
+        {isKR && <ProgressBar value={percent} />}
         <TimeCounter endDate={showTimer ? endDate : null} />
-        <Card outlined={true}>{message}</Card>
+
+        {isKR && <Card outlined={true}>{message}</Card>}
 
         {openSettings && (
           <SettingsModal
