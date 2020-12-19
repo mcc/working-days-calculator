@@ -1,9 +1,11 @@
 import moment from "moment";
 import Holidays from "date-holidays";
 
-export const getWorkingDaysCount = (start, end) => {
+export const getWorkingDaysCount = (countryCode, start, end) => {
+  if (!countryCode) return null;
+
   const hd = new Holidays();
-  hd.init("KR");
+  hd.init(countryCode);
 
   const startYear = moment(start).year();
   const endYear = moment(end).year();

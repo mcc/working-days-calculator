@@ -145,11 +145,19 @@ const DateCalculator = () => {
       return;
     }
 
-    const { calendarDays, workDays } = getWorkingDaysCount(
-      countryCode,
-      startDate,
-      endDate
-    );
+    const calculated = getWorkingDaysCount(countryCode, startDate, endDate);
+
+    if (!calculated) {
+      const requiredMsg = document.querySelector(".required");
+      requiredMsg.classList.toggle("show");
+
+      setTimeout(() => {
+        requiredMsg.classList.toggle("show");
+      }, 2000);
+      return;
+    }
+
+    const { calendarDays, workDays } = calculated;
     setCalendarDays(calendarDays || "-");
     setWorkDays(workDays || "-");
 
@@ -191,6 +199,7 @@ const DateCalculator = () => {
 
     setLocalStorage(COUNTRY_KEY, code);
 
+    initData();
     loadFromLocalStorage();
   };
 

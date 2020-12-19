@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import WarningIcon from "@material-ui/icons/Warning";
+
 
 import countries from "data/Country";
 
@@ -55,9 +57,12 @@ const CountrySelector = ({ code, onSelect }) => {
           {countries[code] ? countries[code].name : "Select Country"}
         </span>
         <span className="mobile-text">
-          {countries[code] ? countries[code].code : "Select"}
+          {countries[code] ? countries[code].code : "Country"}
         </span>
       </CountryButton>
+      <div className="required">
+        <WarningIcon />
+        Please select your country</div>
 
       {showList && (
         <ul onClick={handleSelectCountry}>

@@ -16,6 +16,70 @@
     ul {
       width: 250px;
     }
+
+    .required {
+      &.show {
+        width: max-content;
+      }
+    }
+  }
+
+  .required {
+    display: none;
+
+    &.show {
+      display: block;
+      position: absolute;
+      margin-top: 1rem;
+      padding: 0.4rem 0.6rem;
+      background: white;
+      border-radius: $border-radius-xs;
+      z-index: 999;
+      color: #f16059;
+      border: 2px solid #f16059;
+      // box-shadow: 6px 4px 16px #e1ebfc;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      width: max-content;
+      gap: 0 9px;
+      animation-duration: 3s;
+      animation-name: fade-out;
+      animation-delay: 1s;
+      animation-timing-function: ease-out;
+    }
+
+    @keyframes fade-out {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      bottom: 103%;
+      left: 17.2%;
+      margin-left: 5px;
+      width: 0;
+      border-bottom: 9px solid #f16059;
+      border-right: 9px solid transparent;
+      border-left: 9px solid transparent;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 100%;
+      left: 18%;
+      margin-left: 5px;
+      width: 0;
+      border-bottom: 7px solid white;
+      border-right: 7px solid transparent;
+      border-left: 7px solid transparent;
+    }
   }
 
   ul {
