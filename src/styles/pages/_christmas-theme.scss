@@ -1,4 +1,8 @@
 .christmas-theme {
+  .copyright {
+    color: white !important;
+  }
+
   .background {
     background-position: right;
     background-size: cover;
@@ -136,7 +140,25 @@
   }
 
   #message {
-    box-shadow: 6px 4px 16px #f5f5dc9e;
+    box-shadow: 6px 4px 16px #609f9f42;
     color: $theme1-primary-300;
+  }
+
+  //=====CountrySelector=====
+  .country-selector {
+    color: $theme1-primary-300;
+
+    .required {
+      box-shadow: 4px 4px 16px #609f9f26;
+    }
+    ul {
+      box-shadow: 6px 4px 16px #609f9f26;
+      li {
+        &.selected {
+          background: #609f9f26;
+          font-weight: bold;
+        }
+      }
+    }
   }
 }
