@@ -7,6 +7,17 @@
     width: 100%;
   }
 
+  @media screen and (max-width: 575px) {
+    width: auto;
+
+    button {
+      width: 100%;
+    }
+    ul {
+      width: 250px;
+    }
+  }
+
   ul {
     height: 200px;
     overflow-y: scroll;
@@ -16,6 +27,7 @@
     padding: 0;
     margin: 0.5rem 0;
     border-radius: $border-radius-xs;
+    box-shadow: 6px 4px 16px #e1ebfc;
 
     //Hide scollbar for Chrome, Safari and Opera
     &::-webkit-scrollbar {

@@ -11,11 +11,23 @@
     justify-content: end;
     gap: 0 1rem;
 
+    .mobile-text {
+      display: none;
+    }
+
     @media screen and (max-width: 575px) {
-      grid-template-columns: 50px 1fr auto;
+      grid-template-columns: auto 1fr auto;
 
       .country {
         text-overflow: ellipsis;
+      }
+
+      .pc-text {
+        display: none;
+      }
+
+      .mobile-text {
+        display: block;
       }
       // button:first-child {
       //   justify-self: normal;

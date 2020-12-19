@@ -24,7 +24,7 @@ const CountrySelector = ({ code, onSelect }) => {
       el.className.includes("selected")
     );
 
-    if(!selected) return;
+    if (!selected) return;
 
     list.scrollIntoView({ behavior: "smooth" });
     list.scrollTop = selected.offsetTop - list.clientHeight / 2;
@@ -51,7 +51,12 @@ const CountrySelector = ({ code, onSelect }) => {
         endIcon={<ExpandMoreIcon />}
         onClick={toggleList}
       >
-        {countries[code] ? countries[code].name : "Select Country"}
+        <span className="pc-text">
+          {countries[code] ? countries[code].name : "Select Country"}
+        </span>
+        <span className="mobile-text">
+          {countries[code] ? countries[code].code : "Select"}
+        </span>
       </CountryButton>
 
       {showList && (
