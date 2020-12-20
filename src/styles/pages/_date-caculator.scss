@@ -17,6 +17,7 @@
 
     @media screen and (max-width: 575px) {
       grid-template-columns: auto 1fr auto;
+      gap : 0 0.5rem;
 
       .country {
         text-overflow: ellipsis;
@@ -29,9 +30,17 @@
       .mobile-text {
         display: block;
       }
-      // button:first-child {
-      //   justify-self: normal;
-      // }
+
+      button.title{
+        max-width: inherit;
+        span {
+          text-overflow: ellipsis;
+          width: inherit;
+          display: inline-block;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
     }
   }
 }

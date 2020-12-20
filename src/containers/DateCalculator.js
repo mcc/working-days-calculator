@@ -57,7 +57,7 @@ const SettingsInfo = ({
     <div className="settings-info">
       <CountrySelector code={countryCode} onSelect={onSelectCountry} />
 
-      <Button variant="contained" color="primary" onClick={onLoadSettings}>
+      <Button variant="contained" color="primary" onClick={onLoadSettings} className="title">
         {settings.title}
       </Button>
       <Button

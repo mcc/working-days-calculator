@@ -151,11 +151,15 @@
     .required {
       box-shadow: 4px 4px 16px #609f9f26;
     }
+
+    .search {
+      background : #e7f1f1c7 !important;
+    }
     ul {
       box-shadow: 6px 4px 16px #609f9f26;
       li {
         &.selected {
-          background: #609f9f26;
+          background: #609f9f26 !important;
           font-weight: bold;
         }
       }
