@@ -45,10 +45,11 @@ const CountrySelector = ({ code, onSelect }) => {
    */
   const handleSelectCountry = (e) => {
     const { nodeName, id } = e.target;
-    if (nodeName !== "LI") return;
+    toggleList();
+
+    if (nodeName !== "LI" || id === code) return;
 
     onSelect(id);
-    toggleList();
     setCountryList(countries);
   };
 
