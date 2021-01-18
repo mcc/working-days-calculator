@@ -1,5 +1,10 @@
 .progress-bar {
-    display : grid; 
-    grid-template-columns: 1fr auto; 
-    gap : 0 10px; 
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0 10px;
+  border-radius: $border-radius-sm;
+
+  div {
+    border-radius: inherit !important;
+  }
 }
