@@ -2,17 +2,23 @@ import React, { useEffect, useState } from "react";
 
 import axios from "axios";
 import Snowflakes from "magic-snowflakes";
+import MenuIcon from "@material-ui/icons/Menu";
 
 import DateCalculator from "containers";
 
 import Feedback from "components/Feedback";
 import Loader from "components/Loader";
+import SideNav from "components/SideNav";
+
+import { createRipple } from "utils/Ripple";
 
 import "styles/app.scss";
 import "react-calendar/dist/Calendar.css";
 
 function App() {
   const [imageLoading, setImageLoading] = useState(true);
+  const [openMenu, setOpenMenu] = useState(false);
+
   useEffect(() => {
     fetchImage();
   }, []);
@@ -48,6 +54,15 @@ function App() {
     element.classList.toggle("show");
   };
 
+  const toggleSideNav = (e) => {
+    if (e) createRipple(e);
+
+    const sideNav = document.getElementById("sideNav");
+    sideNav.classList.toggle("show");
+
+    setOpenMenu((prevState) => !prevState);
+  };
+
   const onImageLoad = () => {
     setImageLoading(false);
   };
@@ -56,6 +71,9 @@ function App() {
     <div className="App christmas-theme">
       {imageLoading && <Loader />}
       <img className="background" alt="" onLoad={onImageLoad} />
+      <MenuButton onToggle={toggleSideNav} />
+      <SideNav open={openMenu} onToggle={toggleSideNav} />
+
       <DateCalculator />
 
       <div className="feedback-icon" onClick={toggleFeedback}>
@@ -75,4 +93,9 @@ const CopyRight = () => (
   <div className="copyright"> Copyright © 2020 jylee. All rights reserved.</div>
 );
 
+const MenuButton = ({ onToggle }) => (
+  <span className="menu" onClick={onToggle}>
+    <MenuIcon />
+  </span>
+);
 export default App;

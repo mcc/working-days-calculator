@@ -1,0 +1,19 @@
+.ripple {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  animation: rippleEffect 0.7s ease-out;
+}
+
+@keyframes rippleEffect {
+  from {
+    width: 0px;
+    height: 0px;
+  }
+  to {
+    width: 500px;
+    height: 500px;
+    opacity: 0;
+  }
+}
