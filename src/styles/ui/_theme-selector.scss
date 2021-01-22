@@ -17,6 +17,15 @@ $color-size: 45px;
       border-radius: 50%;
       margin-right: 1rem;
       background: lightgray;
+      position: relative;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+
+      svg.selected {
+        transform: rotate(90deg);
+        color: white;
+      }
 
       &:hover {
         cursor: pointer;
@@ -25,7 +34,7 @@ $color-size: 45px;
       }
     }
 
-    .theme-blue {
+    .blueTheme {
       background: linear-gradient(
         140deg,
         $blue-gradient-100 0%,
@@ -34,11 +43,11 @@ $color-size: 45px;
       );
     }
 
-    .theme-green {
-      background-color : $green-primary-100;
+    .greenTheme {
+      background-color: $green-primary-100;
     }
 
-    .theme-redYellow {
+    .redYellowTheme {
       background: linear-gradient(
         140deg,
         $redyellow-gradient-100 0%,
@@ -62,6 +71,29 @@ $color-size: 45px;
 
 .bg-selector {
   margin-top: 1rem;
+
+  .color-wrapper {
+    padding: 1rem 0 0.5rem 0;
+
+    svg.selected {
+      color: var(--active) !important;
+    }
+
+    span.outlined {
+      border: 1px solid rgba(0, 0, 0, 0.26);
+      color: rgba(0, 0, 0, 0.26);
+      background: white;
+      &.selected {
+        border: 1px solid var(--primary-300);
+        color: var(--primary-300);
+      }
+    }
+  }
+  .description {
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-left: 5px;
+  }
   .file-drop {
     border: 1px solid var(--text);
     display: flex;
@@ -70,6 +102,7 @@ $color-size: 45px;
     align-items: center;
     font-weight: 600;
     height: 150px;
+    margin-top: 1rem;
 
     &:hover {
       cursor: pointer;
@@ -79,9 +112,6 @@ $color-size: 45px;
 
     svg {
       font-size: 3rem;
-    }
-    span {
-      margin-top: 1rem;
     }
   }
 }

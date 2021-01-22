@@ -7,7 +7,7 @@ import ThemeSelector from "components/ThemeSelector";
 
 const SideNav = ({ open, onToggle }) => {
   const handleClickBackdrop = (e) => {
-    if (e.target === e.currentTarget) onToggle();
+    if (e.target === e.currentTarget && open) onToggle();
   };
 
   const containerStyle = {
