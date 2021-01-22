@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/working-days-calculator/static/css/main.d70951d6.chunk.css",
-    "main.js": "/working-days-calculator/static/js/main.897cde34.chunk.js",
-    "main.js.map": "/working-days-calculator/static/js/main.897cde34.chunk.js.map",
+    "main.css": "/working-days-calculator/static/css/main.64310ad2.chunk.css",
+    "main.js": "/working-days-calculator/static/js/main.7132ad82.chunk.js",
+    "main.js.map": "/working-days-calculator/static/js/main.7132ad82.chunk.js.map",
     "runtime-main.js": "/working-days-calculator/static/js/runtime-main.7481a02c.js",
     "runtime-main.js.map": "/working-days-calculator/static/js/runtime-main.7481a02c.js.map",
     "static/css/2.8cebfa1f.chunk.css": "/working-days-calculator/static/css/2.8cebfa1f.chunk.css",
-    "static/js/2.77928242.chunk.js": "/working-days-calculator/static/js/2.77928242.chunk.js",
-    "static/js/2.77928242.chunk.js.map": "/working-days-calculator/static/js/2.77928242.chunk.js.map",
+    "static/js/2.0b632cbe.chunk.js": "/working-days-calculator/static/js/2.0b632cbe.chunk.js",
+    "static/js/2.0b632cbe.chunk.js.map": "/working-days-calculator/static/js/2.0b632cbe.chunk.js.map",
     "index.html": "/working-days-calculator/index.html",
     "static/css/2.8cebfa1f.chunk.css.map": "/working-days-calculator/static/css/2.8cebfa1f.chunk.css.map",
-    "static/css/main.d70951d6.chunk.css.map": "/working-days-calculator/static/css/main.d70951d6.chunk.css.map",
-    "static/js/2.77928242.chunk.js.LICENSE.txt": "/working-days-calculator/static/js/2.77928242.chunk.js.LICENSE.txt"
+    "static/css/main.64310ad2.chunk.css.map": "/working-days-calculator/static/css/main.64310ad2.chunk.css.map",
+    "static/js/2.0b632cbe.chunk.js.LICENSE.txt": "/working-days-calculator/static/js/2.0b632cbe.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.7481a02c.js",
     "static/css/2.8cebfa1f.chunk.css",
-    "static/js/2.77928242.chunk.js",
-    "static/css/main.d70951d6.chunk.css",
-    "static/js/main.897cde34.chunk.js"
+    "static/js/2.0b632cbe.chunk.js",
+    "static/css/main.64310ad2.chunk.css",
+    "static/js/main.7132ad82.chunk.js"
   ]
 }
