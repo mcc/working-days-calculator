@@ -251,7 +251,7 @@ const DateCalculator = () => {
         {isKR && <ProgressBar value={percent} />}
         <TimeCounter endDate={showTimer ? endDate : null} />
 
-        {isKR && <Card outlined={true}>{message}</Card>}
+        {isKR && <Card>{message}</Card>}
 
         {openSettings && (
           <SettingsModal

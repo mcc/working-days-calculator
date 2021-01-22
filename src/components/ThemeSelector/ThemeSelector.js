@@ -3,9 +3,23 @@ import React, { useContext, useState } from "react";
 import SaveAltIcon from "@material-ui/icons/SaveAlt";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import ImageSearchIcon from "@material-ui/icons/ImageSearch";
+import ImageIcon from "@material-ui/icons/Image";
 
 import { ThemeContext } from "context/ThemeContext";
 import Themes from "data/Colors";
+
+import { setLocalStorage } from "utils/Storage";
+import { toBase64 } from "utils/File";
+
+/**
+ * @description get current theme's background color
+ * @param {String} color themename
+ */
+const getThemeBackground = (color) => {
+  const currentThemeStyle = Themes[color];
+  const backgroundColor = currentThemeStyle[0].split(":")[1];
+  return backgroundColor;
+};
 
 const ColorSelector = ({ colors, onToggle, currentTheme }) => (
   <div className="color-selector">
@@ -22,60 +36,67 @@ const ColorSelector = ({ colors, onToggle, currentTheme }) => (
   </div>
 );
 
-const BackgroundSelector = ({ background, isCustomMode, toggleMode }) => {
-  const mode = isCustomMode ? "custom" : "default";
+const BackgroundSelector = ({
+  currentTheme,
+  isCustomMode,
+  toggleMode,
+  applyBackground,
+}) => {
+  const getFile = () => {
+    const file = document.querySelector('input[type="file"]').files[0];
+    toBase64(file)
+      .then((res) => {
+        setLocalStorage("bg", res.data);
+        setLocalStorage("useCustomBackground", true);
+        applyBackground();
+      })
+      .catch((error) => {
+        alert(
+          "Image upload failed. Please try again or select a different image."
+        );
+      });
+  };
 
+  const mode = isCustomMode ? "custom" : "default";
+  const backgroundColor = getThemeBackground(currentTheme);
   return (
     <div className="bg-selector">
       <div className="title"> Background</div>
       <div className="color-wrapper">
-        <span
-          style={{ backgroundColor: background }}
-          onClick={() => toggleMode(false)}
-        >
+        <span style={{ backgroundColor }} onClick={() => toggleMode(false)}>
           {!isCustomMode && <ArrowForwardIosIcon className="selected" />}
         </span>
         <span
           className={`outlined ${isCustomMode ? "selected" : ""}`}
           onClick={() => toggleMode(true)}
         >
-          <ImageSearchIcon />
+          {isCustomMode ? <ImageIcon /> : <ImageSearchIcon />}
         </span>
       </div>
       <span className="description"> Use {mode} background</span>
       {isCustomMode && (
-        <div className="file-drop">
+        <label className="file-drop">
+          <input type="file" style={{ display: "none" }} onChange={getFile} />
           <SaveAltIcon />
-          <span> Choose a file or drag it here </span>
-        </div>
+          <span> Choose a file </span>
+        </label>
       )}
     </div>
   );
 };
 
-/**
- * @description get current theme's background color
- * @param {String} color themename
- */
-const getThemeBackground = (color) => {
-  const currentThemeStyle = Themes[color];
-  const backgroundColor = currentThemeStyle[0].split(":")[1];
-  return backgroundColor;
-};
-
 const ThemeSelector = ({}) => {
   const themes = ["blueTheme", "greenTheme", "redYellowTheme"];
-  const { theme, toggleTheme } = useContext(ThemeContext);
-  const [background, setBackground] = useState(getThemeBackground(theme));
-  const [isCustomMode, setCustomMode] = useState(false);
+  const {
+    theme,
+    isCustomMode,
+    toggleCustomMode,
+    toggleTheme,
+    applyBackground,
+  } = useContext(ThemeContext);
 
   const handleToggleTheme = (color) => {
     toggleTheme(color);
-    setBackground(getThemeBackground(color));
-  };
-
-  const handleToggleMode = (state) => {
-    setCustomMode(state);
   };
 
   return (
@@ -86,9 +107,10 @@ const ThemeSelector = ({}) => {
         currentTheme={theme}
       />
       <BackgroundSelector
-        background={background}
+        currentTheme={theme}
         isCustomMode={isCustomMode}
-        toggleMode={handleToggleMode}
+        toggleMode={toggleCustomMode}
+        applyBackground={applyBackground}
       />
     </div>
   );

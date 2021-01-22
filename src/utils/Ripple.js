@@ -14,8 +14,6 @@ export const createRipple = (e) => {
   const x = xCoord - leftPos;
   const y = yCoord - topPos;
 
-  console.log(x, y);
-
   const span = document.createElement("span");
   span.classList.add("ripple");
   span.style.top = `${y}px`;
