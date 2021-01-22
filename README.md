@@ -1,11 +1,13 @@
 # working-days-calculator
 
-### Original Theme 💙
-![wdc_demo_20201122](https://user-images.githubusercontent.com/38097442/99899872-c2169d80-2cef-11eb-8869-92d1a0d3783e.gif)
+![wdc_demo_20210123](https://user-images.githubusercontent.com/38097442/105511277-10a5df80-5d13-11eb-896c-e325c7bab4ed.gif)
 
-### Christmas Theme 🎄
-![wdc_demo_theme_20201128](https://user-images.githubusercontent.com/38097442/100494794-7bf68980-3188-11eb-84f8-a00cb11692a6.gif)
-
+## Features 
+- Calculates working days between two dates based on selected country's national holiday 
+- Countdown timer 
+- Cheer up messages 
+- Multiple theme selection
+- Set custom image as a background
 ---
 📆 Calculate working days between dates
 
