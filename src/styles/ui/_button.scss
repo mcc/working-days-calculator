@@ -9,10 +9,10 @@
 }
 
 .MuiButton-textPrimary {
-  color: var(--primary-200);
+  color: var(--primary-200) !important;
 
   &:hover {
-    background-color: var(--hover-background);
+    background-color: var(--hover-background) !important;
   }
 }
 

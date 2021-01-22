@@ -10,12 +10,12 @@
 
   .settings {
     display: grid;
-    grid-template-columns: 100px 1fr 30px; 
-    gap : 0 1rem; 
+    grid-template-columns: 100px 1fr 30px;
+    gap: 0 1rem;
     color: var(--text);
     align-items: center;
-    
-    @media screen and (max-width : 490px) {
+
+    @media screen and (max-width: 490px) {
       grid-template-columns: 50px 9rem auto;
     }
     .title {
@@ -27,7 +27,8 @@
     }
 
     i {
-      color : var(--active);
+      color: var(--active);
+      cursor: pointer;
     }
   }
 }

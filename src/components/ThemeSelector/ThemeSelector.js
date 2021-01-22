@@ -34,7 +34,6 @@ const BackgroundSelector = ({}) => (
 
 const ThemeSelector = ({}) => {
   const { toggleTheme } = useContext(ThemeContext);
-
   const themes = ["blue", "green", "redYellow"];
 
   return (

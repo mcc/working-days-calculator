@@ -63,12 +63,12 @@ $feedback-width: 400px;
     font-weight: bold;
     display: flex;
     justify-content: space-between;
-    color : var(--primary-300); 
+    color : var(--text); 
 
     .title {
       letter-spacing: 0.7px;
     }
-
+ 
     svg {
       &:hover {
         cursor: pointer;

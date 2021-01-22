@@ -1,4 +1,5 @@
-$item-width: 300px;
+$item-width-web: 300px;
+$item-width-mobile: 270px;
 
 .side-nav-container {
   z-index: 1000;
@@ -16,6 +17,7 @@ $item-width: 300px;
     z-index: 1200;
     transition: transform 0.3s ease-in-out;
     color: var(--text);
+    box-shadow: -5px 0px 11px var(--card-box-shadow);
   }
 
   .backdrop {
@@ -34,13 +36,18 @@ $item-width: 300px;
     text-align: center;
   }
   .nav-item-list {
-    width: $item-width;
+    width: $item-width-web;
+
+    @media screen and (max-width: 412px) {
+      width: $item-width-mobile;
+    }
   }
 
   .nav-item {
     padding: 8px 16px;
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     cursor: pointer;
 
     &:hover {

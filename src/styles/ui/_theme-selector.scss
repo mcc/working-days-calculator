@@ -35,20 +35,15 @@ $color-size: 45px;
     }
 
     .theme-green {
-      background: linear-gradient(
-        140deg,
-        $green-gradient-100 0%,
-        $green-gradient-200 50%,
-        $green-gradient-300 100%
-      );
+      background-color : $green-primary-100;
     }
 
     .theme-redYellow {
       background: linear-gradient(
         140deg,
-        rgb(255, 209, 100) 0%,
-        rgb(255, 201, 80) 50%,
-        #f50057a6 100%
+        $redyellow-gradient-100 0%,
+        $redyellow-gradient-200 50%,
+        $redyellow-gradient-300 100%
       );
     }
   }
