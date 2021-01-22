@@ -4,6 +4,10 @@
   gap: 0 10px;
   border-radius: $border-radius-sm;
 
+  .MuiLinearProgress-barColorPrimary {
+    background-color: var(--progress-bar-background);
+  }
+
   div {
     border-radius: inherit !important;
   }

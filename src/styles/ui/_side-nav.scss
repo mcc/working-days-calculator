@@ -1,4 +1,4 @@
-$item-width: 250px;
+$item-width: 300px;
 
 .side-nav-container {
   z-index: 1000;
@@ -15,6 +15,7 @@ $item-width: 250px;
     top: 0;
     z-index: 1200;
     transition: transform 0.3s ease-in-out;
+    color: var(--text);
   }
 
   .backdrop {
@@ -40,6 +41,11 @@ $item-width: 250px;
     padding: 8px 16px;
     display: flex;
     justify-content: flex-start;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--hover-background);
+    }
 
     .icon {
       width: 55px;

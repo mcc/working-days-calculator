@@ -1,15 +1,19 @@
-//colors 
-$app-bg : #E2ECFE;
-$color-navy : #1B256D; 
-$color-blue : #4360FB; 
+//border-radius
+$border-radius-xs: 0.2rem;
+$border-radius-sm: 1rem;
 
-$border-radius-xs : 0.2rem;
-$border-radius-sm : 1rem; 
+//theme-green
+$green-gradient-100: #419a88;
+$green-gradient-200: #348476;
+$green-gradient-300: #296f65;
+$green-primary-100: #609f9f;
+$green-primary-200: #446969;
+$green-primary-300: #253838;
 
-//theme1 
-$theme1-gradient-100 : #419A88; 
-$theme1-gradient-200 : #348476; 
-$theme1-gradient-300 : #296f65; 
-$theme1-primary-100 : #609F9F; 
-$theme1-primary-200 : #446969; 
-$theme1-primary-300 : #253838; 
+//theme-blue
+$blue-gradient-100: #87aaee;
+$blue-gradient-200: #919df3;
+$blue-gradient-300: #9794f3;
+$blue-primary-100: #3f51b5;
+$blue-primary-200: #303f9f;
+$blue-primary-300: #1b256d;

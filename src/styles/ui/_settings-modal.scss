@@ -12,7 +12,7 @@
     display: grid;
     grid-template-columns: 100px 1fr 30px; 
     gap : 0 1rem; 
-    color: $color-navy;
+    color: var(--text);
     align-items: center;
     
     @media screen and (max-width : 490px) {
@@ -24,6 +24,10 @@
 
     input {
       width: auto;
+    }
+
+    i {
+      color : var(--active);
     }
   }
 }

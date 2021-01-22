@@ -16,15 +16,15 @@
   }
 
   &.outlined {
-    border: 1px solid $color-blue;
+    border: 1px solid var(--active);
     background: transparent;
   }
   &.gradient {
     background: linear-gradient(
       90deg,
-      rgba(135, 170, 238, 1) 0%,
-      rgba(145, 157, 243, 1) 50%,
-      rgba(151, 148, 243, 1) 100%
+      var(--gradient-100) 0%,
+      var(--gradient-200) 50%,
+      var(--gradient-300) 100%
     );
 
     color: white;

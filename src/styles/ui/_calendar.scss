@@ -1,16 +1,21 @@
 .react-calendar {
   display: block;
-  height: 300px;
-  width : 350px;
+  height: 310px;
+  width: 350px;
   border-radius: 0.4rem;
-  background: rgb(135, 170, 238);
+  background: var(--gradient-100);
   background: linear-gradient(
     90deg,
-    rgba(135, 170, 238, 1) 0%,
-    rgba(145, 157, 243, 1) 50%,
-    rgba(151, 148, 243, 1) 100%
+    var(--gradient-100) 0%,
+    var(--gradient-200) 50%,
+    var(--gradient-300) 100%
   ) !important;
   border: none !important;
+
+  i {
+    color: white;
+    cursor : pointer;
+  }
 
   abbr[title] {
     text-decoration: none;
@@ -31,8 +36,7 @@
     background-color: transparent;
   }
 
-  .react-calendar__navigation button:enabled:focus,
-  {
+  .react-calendar__navigation button:enabled:focus {
     background: transparent;
   }
   .react-calendar__navigation button:enabled:hover,
@@ -61,7 +65,7 @@
       align-items: center;
 
       background: white !important;
-      color: $color-navy;
+      color: var(--text);
       font-weight: bold;
     }
   }
@@ -70,11 +74,11 @@
   }
 
   .icon-caret-right {
-    color :white; 
-    font-size : 1.1rem;  
+    color: white;
+    font-size: 1.1rem;
 
     &.flip {
-      transform : rotate(180deg);
+      transform: rotate(180deg);
       display: inline-block;
     }
   }

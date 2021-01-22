@@ -63,6 +63,7 @@ $feedback-width: 400px;
     font-weight: bold;
     display: flex;
     justify-content: space-between;
+    color : var(--primary-300); 
 
     .title {
       letter-spacing: 0.7px;
@@ -92,7 +93,7 @@ $feedback-width: 400px;
         transition: transform 0.1s ease-out;
 
         .label {
-          color: $color-navy;
+          color: var(--active);
           font-weight: bold;
         }
       }
@@ -119,7 +120,7 @@ $feedback-width: 400px;
       border-radius: 5px;
 
       &:focus {
-        border: 1px solid $color-blue;
+        border: 1px solid var(--active);
       }
     }
   }

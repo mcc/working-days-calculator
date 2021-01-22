@@ -9,20 +9,24 @@ body,
 }
 body {
   margin: 0 auto;
-  color: $color-navy;
   user-select: none;
+  color: var(--text);
+}
+
+*:not(body) {
+  transition: all 0.5s ease;
 }
 
 .App {
   height: 100%;
   display: flex;
   position: relative;
-  background: $app-bg;
+  background: var(--app-background);
   overflow-y: auto;
 
   .menu {
     z-index: 1000;
-    color: white;
+    color: var(--text);
     position: absolute;
     right: 0;
     text-align: center;
@@ -51,7 +55,7 @@ body {
     bottom: 1.5rem;
     right: 1.5rem;
 
-    background: $color-navy;
+    background: var(--primary-200);
     padding: 1rem;
     border-radius: 50%;
 
@@ -67,7 +71,7 @@ body {
   }
 
   .copyright {
-    color: $color-navy;
+    color: var(--text);
     font-size: 0.6rem;
     position: fixed;
     bottom: 10px;
@@ -110,5 +114,5 @@ body {
 
 i {
   font-size: 1.6rem;
-  color: $color-blue;
+  color: var(--active);
 }

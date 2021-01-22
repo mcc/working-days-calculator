@@ -1,9 +1,40 @@
 .button {
-    text-align: center; 
-    padding: 0.3rem 0; 
-    &.blue {
-        background : $color-blue;
-        border-radius: $border-radius-xs; 
-        color : white; 
-    }
+  text-align: center;
+  padding: 0.3rem 0;
+  &.blue {
+    background: var(--primary-100);
+    border-radius: $border-radius-xs;
+    color: white;
+  }
+}
+
+.MuiButton-textPrimary {
+  color: var(--primary-200);
+
+  &:hover {
+    background-color: var(--hover-background);
+  }
+}
+
+.MuiButton-containedPrimary {
+  background-color: var(--primary-100) !important;
+
+  &.Mui-disabled {
+    background-color: rgba(0, 0, 0, 0.12) !important;
+  }
+
+  &:hover {
+    background-color: var(--primary-200) !important;
+  }
+}
+
+.MuiButton-outlined {
+  border-color: var(--primary-100) !important;
+  color: var(--primary-100) !important;
+
+  &:hover {
+    background-color: rgba(96, 159, 159, 0.07);
+    border-color: var(--primary-300) !important;
+    color: var(--primary-300) !important;
+  }
 }
