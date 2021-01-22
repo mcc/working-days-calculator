@@ -3,6 +3,7 @@ import React from "react";
 import PaletteIcon from "@material-ui/icons/Palette";
 
 import NavItem from "./NavItem";
+import ThemeSelector from "components/ThemeSelector";
 
 const SideNav = ({ open, onToggle }) => {
   const handleClickBackdrop = (e) => {
@@ -14,7 +15,7 @@ const SideNav = ({ open, onToggle }) => {
   };
 
   const sideNavStyle = {
-    transform: open ? "translateX(0)" : "translateX(250px)",
+    transform: open ? "translateX(0)" : "translateX(350px)",
   };
 
   return (
@@ -23,9 +24,7 @@ const SideNav = ({ open, onToggle }) => {
         <h3> Settings</h3>
         <div className="nav-item-list">
           <NavItem icon={<PaletteIcon />} name="Theme">
-
-
-            
+            <ThemeSelector />
           </NavItem>
         </div>
       </div>
