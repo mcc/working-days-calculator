@@ -55,6 +55,15 @@ $color-size: 45px;
         $redyellow-gradient-300 100%
       );
     }
+
+    .pinkPurpleTheme {
+      background: linear-gradient(
+        140deg,
+        $pinkPurple-gradient-100 0%,
+        $pinkPurple-gradient-200 50%,
+        $pinkPurple-gradient-300 100%
+      );
+    }
   }
 }
 .color-selector {

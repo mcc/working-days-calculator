@@ -86,7 +86,12 @@ const BackgroundSelector = ({
 };
 
 const ThemeSelector = ({}) => {
-  const themes = ["blueTheme", "greenTheme", "redYellowTheme"];
+  const themes = [
+    "redYellowTheme",
+    "greenTheme",
+    "blueTheme",
+    "pinkPurpleTheme",
+  ];
   const {
     theme,
     isCustomMode,

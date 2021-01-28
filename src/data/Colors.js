@@ -47,6 +47,22 @@ const Themes = {
     "--calendar-marker : #F57F73",
     "--copyright-color : #290d13",
   ],
+  pinkPurpleTheme : [
+    "--app-background : #EFE9F9", 
+    "--text : #261346", 
+    "--active : #bd7fea", 
+    "--hover-background: #EFE9F985",
+    "--progress-bar-background : #c29de3", 
+    "--gradient-100 : #FAA4E5", 
+    "--gradient-200 : #C29DE3",
+    "--gradient-300 : #9597EC",
+    "--primary-100 : #AC8DE0",
+    "--primary-200 : #A17DDC",
+    "--primary-300 : #956ED7", 
+    "--card-box-shadow : rgb(222 203 253 / 62%)", 
+    "--calendar-marker : #BA9CE4", 
+    "--copyright-color : #261346", 
+  ],
   darkTheme: [],
 };
 
