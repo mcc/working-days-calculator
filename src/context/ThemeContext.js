@@ -18,16 +18,18 @@ const ThemeProvider = ({ children }) => {
   //paint app before it renders elements
   useLayoutEffect(() => {
     const storedTheme = getLocalStorage("theme") || theme;
+    setTheme(storedTheme);
+    applyTheme(Themes[theme]);
+  }, [theme]);
+
+  useLayoutEffect(() => {
     const useCustomBackground = getLocalStorage("useCustomBackground");
     
     if (useCustomBackground) {
       setCustomMode(true);
       applyBackground();
     }
-    
-    setTheme(storedTheme);
-    applyTheme(Themes[theme]);
-  }, [theme]);
+  },[isCustomMode]);
 
   const applyTheme = (theme) => {
     const root = document.getElementsByTagName("html")[0];
