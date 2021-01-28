@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/working-days-calculator/static/css/main.64310ad2.chunk.css",
-    "main.js": "/working-days-calculator/static/js/main.7132ad82.chunk.js",
-    "main.js.map": "/working-days-calculator/static/js/main.7132ad82.chunk.js.map",
+    "main.css": "/working-days-calculator/static/css/main.c5bc6c33.chunk.css",
+    "main.js": "/working-days-calculator/static/js/main.60ba623c.chunk.js",
+    "main.js.map": "/working-days-calculator/static/js/main.60ba623c.chunk.js.map",
     "runtime-main.js": "/working-days-calculator/static/js/runtime-main.7481a02c.js",
     "runtime-main.js.map": "/working-days-calculator/static/js/runtime-main.7481a02c.js.map",
     "static/css/2.8cebfa1f.chunk.css": "/working-days-calculator/static/css/2.8cebfa1f.chunk.css",
@@ -10,14 +10,14 @@
     "static/js/2.0b632cbe.chunk.js.map": "/working-days-calculator/static/js/2.0b632cbe.chunk.js.map",
     "index.html": "/working-days-calculator/index.html",
     "static/css/2.8cebfa1f.chunk.css.map": "/working-days-calculator/static/css/2.8cebfa1f.chunk.css.map",
-    "static/css/main.64310ad2.chunk.css.map": "/working-days-calculator/static/css/main.64310ad2.chunk.css.map",
+    "static/css/main.c5bc6c33.chunk.css.map": "/working-days-calculator/static/css/main.c5bc6c33.chunk.css.map",
     "static/js/2.0b632cbe.chunk.js.LICENSE.txt": "/working-days-calculator/static/js/2.0b632cbe.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.7481a02c.js",
     "static/css/2.8cebfa1f.chunk.css",
     "static/js/2.0b632cbe.chunk.js",
-    "static/css/main.64310ad2.chunk.css",
-    "static/js/main.7132ad82.chunk.js"
+    "static/css/main.c5bc6c33.chunk.css",
+    "static/js/main.60ba623c.chunk.js"
   ]
 }
