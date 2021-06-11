@@ -1,6 +1,9 @@
 # working-days-calculator
 
-![wdc_demo_20210123](https://user-images.githubusercontent.com/38097442/105511277-10a5df80-5d13-11eb-896c-e325c7bab4ed.gif)
+![demo_main_20210220](https://user-images.githubusercontent.com/38097442/108599498-d8a6c080-73d4-11eb-9b80-db969f9fae65.gif)
+
+![demo_theme_20210220](https://user-images.githubusercontent.com/38097442/108599702-09d3c080-73d6-11eb-9d9c-0eda6bded266.gif)
+
 
 ## Features 
 - Calculates working days between two dates based on selected country's national holiday 
