@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 
-import Snowflakes from "magic-snowflakes";
+// import Snowflakes from "magic-snowflakes";
 import MenuIcon from "@material-ui/icons/Menu";
 
 import DateCalculator from "containers";
@@ -21,16 +21,16 @@ function App() {
   const [imageLoading, setImageLoading] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
 
-  useEffect(() => {
-    Snowflakes({
-      color: "white",
-      count: 40,
-      speed: 1,
-      minSize: 13,
-      maxSize: 18,
-      minOpacity: 0.5,
-    });
-  }, []);
+  // useEffect(() => {
+  //   Snowflakes({
+  //     color: "white",
+  //     count: 40,
+  //     speed: 1,
+  //     minSize: 13,
+  //     maxSize: 18,
+  //     minOpacity: 0.5,
+  //   });
+  // }, []);
 
   const toggleFeedback = () => {
     const element = document.getElementById("feedback");
@@ -81,7 +81,7 @@ const CopyRight = () => (
   <div className="copyright"> Copyright © 2020 jylee. All rights reserved.</div>
 );
 
-const MenuButton = ({ onToggle }) => (
+const MenuButton: React.FC<Props> = ({ onToggle }) => (
   <span className="menu" onClick={onToggle}>
     <MenuIcon />
   </span>
