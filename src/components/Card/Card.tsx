@@ -1,6 +1,19 @@
 import React from "react";
 
-const Card = ({ children, className, align, outlined, ...props }) => {
+type CardProps = {
+  children: React.ReactNode;
+  className?: string;
+  align?: string;
+  outlined?: boolean;
+};
+
+const Card: React.FC<CardProps> = ({
+  children,
+  className,
+  align,
+  outlined,
+  ...props
+}) => {
   const cardAlign = `align-${align}`;
   const cardStyle = outlined ? "outlined" : "";
   const classNames = `card ${className || ""} ${cardAlign} ${cardStyle}`;

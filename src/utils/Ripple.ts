@@ -3,8 +3,10 @@
  * @description creates a ripple effect on event target.
  * @param {Event} e
  */
-export const createRipple = (e) => {
+export const createRipple = (e: React.MouseEvent<HTMLElement>) => {
   const { currentTarget } = e;
+  if (!currentTarget) return;
+
   const xCoord = e.clientX;
   const yCoord = e.clientY;
 

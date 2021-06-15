@@ -1,6 +1,10 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, {
+  useState,
+  useContext,
+  MouseEvent,
+  MouseEventHandler,
+} from "react";
 
-// import Snowflakes from "magic-snowflakes";
 import MenuIcon from "@material-ui/icons/Menu";
 
 import DateCalculator from "containers";
@@ -16,32 +20,25 @@ import { ThemeContext } from "context/ThemeContext";
 import "styles/app.scss";
 import "react-calendar/dist/Calendar.css";
 
+type MenuButtonProps = {
+  onToggle: (e: React.MouseEvent<HTMLElement>) => void;
+};
+
 function App() {
   const { isCustomMode } = useContext(ThemeContext);
   const [imageLoading, setImageLoading] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
 
-  // useEffect(() => {
-  //   Snowflakes({
-  //     color: "white",
-  //     count: 40,
-  //     speed: 1,
-  //     minSize: 13,
-  //     maxSize: 18,
-  //     minOpacity: 0.5,
-  //   });
-  // }, []);
-
   const toggleFeedback = () => {
     const element = document.getElementById("feedback");
-    element.classList.toggle("show");
+    element?.classList.toggle("show");
   };
 
-  const toggleSideNav = (e) => {
+  const toggleSideNav = (e: React.MouseEvent<HTMLElement>): void => {
     if (e) createRipple(e);
 
     const sideNav = document.getElementById("sideNav");
-    sideNav.classList.toggle("show");
+    sideNav?.classList.toggle("show");
 
     setOpenMenu((prevState) => !prevState);
   };
@@ -81,7 +78,7 @@ const CopyRight = () => (
   <div className="copyright"> Copyright © 2020 jylee. All rights reserved.</div>
 );
 
-const MenuButton: React.FC<Props> = ({ onToggle }) => (
+const MenuButton = ({ onToggle } : MenuButtonProps) => (
   <span className="menu" onClick={onToggle}>
     <MenuIcon />
   </span>

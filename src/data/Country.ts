@@ -1,4 +1,8 @@
-const countries = {
+type dataType = {
+  [key: string]: { name: string; code: string };
+};
+
+const countries: dataType = {
   AS: { name: "American Samoa", code: "AS" },
   AD: { name: "Andorra", code: "AD" },
   AO: { name: "Angola", code: "AO" },

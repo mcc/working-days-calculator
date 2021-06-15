@@ -8,21 +8,33 @@ import WarningIcon from "@material-ui/icons/Warning";
 
 import countries from "data/Country";
 
+type CountrySelectorProps = {
+  code: string;
+  onSelect: (id: string) => void;
+};
+
 const CountryButton = withStyles((theme) => ({
   root: {
     textTransform: "inherit",
   },
 }))(Button);
 
-const CountrySelector = ({ code, onSelect }) => {
-  const [showList, setShowList] = useState(false);
-  const [countryList, setCountryList] = useState(countries);
-  let timer = null;
+const CountrySelector: React.FC<CountrySelectorProps> = ({
+  code,
+  onSelect,
+}) => {
+  const [showList, setShowList] = useState<boolean>(false);
+  const [countryList, setCountryList] = useState<
+    { name: string; code: string }[]
+  >(Object.values(countries));
+
+  let timer: ReturnType<typeof setTimeout>;
 
   useEffect(() => {
     if (!showList) return;
-    const list = document.querySelector(".country-selector ul");
-    const items = list.getElementsByTagName("li");
+    const list = document.querySelector(".country-selector ul") as HTMLElement;
+    const items: HTMLCollectionOf<HTMLLIElement> =
+      list.getElementsByTagName("li");
 
     const selected = Array.from(items).find((el) =>
       el.className.includes("selected")
@@ -30,8 +42,8 @@ const CountrySelector = ({ code, onSelect }) => {
 
     if (!selected) return;
 
-    list.scrollIntoView({ behavior: "smooth" });
-    list.scrollTop = selected.offsetTop - list.clientHeight / 2;
+    list?.scrollIntoView({ behavior: "smooth" });
+    list.scrollTop = selected.offsetTop - list?.clientHeight / 2;
   }, [showList]);
 
   const toggleList = () => {
@@ -43,14 +55,14 @@ const CountrySelector = ({ code, onSelect }) => {
    * @description Select a country in the list
    * @param {Event} e
    */
-  const handleSelectCountry = (e) => {
-    const { nodeName, id } = e.target;
+  const handleSelectCountry = (e: React.MouseEvent<HTMLElement>) => {
+    const { nodeName, id } = e.target as HTMLUListElement;
     toggleList();
 
     if (nodeName !== "LI" || id === code) return;
 
     onSelect(id);
-    setCountryList(countries);
+    setCountryList(Object.values(countries));
   };
 
   /**
@@ -58,11 +70,13 @@ const CountrySelector = ({ code, onSelect }) => {
    * @description Search for matching country names
    * @param {Event} e
    */
-  const handleSearch = (e) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (timer) return;
     timer = setTimeout(() => {
       const { value } = e.target;
-      const filtered = Object.values(countries).filter((country) =>
+      const filtered: { name: string; code: string }[] = Object.values(
+        countries
+      ).filter((country) =>
         country.name.toLowerCase().includes(value.trim().toLowerCase())
       );
 
@@ -95,7 +109,7 @@ const CountrySelector = ({ code, onSelect }) => {
               type="text"
               placeholder="Search"
               onChange={handleSearch}
-              maxLength="20"
+              maxLength={20}
               spellCheck="false"
               autoComplete="false"
             />
