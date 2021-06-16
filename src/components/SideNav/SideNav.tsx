@@ -5,16 +5,21 @@ import PaletteIcon from "@material-ui/icons/Palette";
 import NavItem from "./NavItem";
 import ThemeSelector from "components/ThemeSelector";
 
-const SideNav = ({ open, onToggle }) => {
-  const handleClickBackdrop = (e) => {
-    if (e.target === e.currentTarget && open) onToggle();
+type SideNavProps = {
+  open: boolean;
+  onToggle: (e: React.MouseEvent<HTMLElement>) => void;
+};
+
+function SideNav({ open, onToggle }: SideNavProps) {
+  const handleClickBackdrop = (e: React.MouseEvent<HTMLElement>) => {
+    if (e.target === e.currentTarget && open) onToggle(e);
   };
 
-  const containerStyle = {
+  const containerStyle: React.CSSProperties = {
     visibility: open ? "visible" : "hidden",
   };
 
-  const sideNavStyle = {
+  const sideNavStyle: React.CSSProperties = {
     transform: open ? "translateX(0)" : "translateX(350px)",
   };
 
@@ -31,6 +36,6 @@ const SideNav = ({ open, onToggle }) => {
       <div className="backdrop" onClick={handleClickBackdrop}></div>
     </div>
   );
-};
+}
 
 export default SideNav;

@@ -11,40 +11,56 @@ import Themes from "data/Colors";
 import { setLocalStorage } from "utils/Storage";
 import { toBase64 } from "utils/File";
 
+type ColorSelectorProps = {
+  colors: string[];
+  onToggle: (color: string) => void;
+  currentTheme: string;
+};
+
+type BackgroundSelectorProps = {
+  currentTheme: string;
+  isCustomMode: boolean;
+  toggleMode: (mode: boolean) => void;
+  applyBackground: () => void;
+};
 /**
  * @description get current theme's background color
  * @param {String} color themename
  */
-const getThemeBackground = (color) => {
-  const currentThemeStyle = Themes[color];
+const getThemeBackground = (color: string) => {
+  const currentThemeStyle: string[] = Themes[color];
   const backgroundColor = currentThemeStyle[0].split(":")[1];
   return backgroundColor;
 };
 
-const ColorSelector = ({ colors, onToggle, currentTheme }) => (
-  <div className="color-selector">
-    <div className="title"> Color </div>
-    <div className="color-wrapper">
-      {colors.map((color) => (
-        <span className={`${color}`} onClick={() => onToggle(color)}>
-          {color === currentTheme && (
-            <ArrowForwardIosIcon className="selected" />
-          )}
-        </span>
-      ))}
+function ColorSelector({ colors, onToggle, currentTheme }: ColorSelectorProps) {
+  return (
+    <div className="color-selector">
+      <div className="title"> Color </div>
+      <div className="color-wrapper">
+        {colors.map((color: string) => (
+          <span className={`${color}`} onClick={() => onToggle(color)}>
+            {color === currentTheme && (
+              <ArrowForwardIosIcon className="selected" />
+            )}
+          </span>
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+}
 
-const BackgroundSelector = ({
+function BackgroundSelector({
   currentTheme,
   isCustomMode,
   toggleMode,
   applyBackground,
-}) => {
-  const getFile = () => {
-    const file = document.querySelector('input[type="file"]').files[0];
-    toBase64(file)
+}: BackgroundSelectorProps) {
+  const getFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+    if (!files) return;
+
+    toBase64(files[0])
       .then((res) => {
         setLocalStorage("bg", res.data);
         setLocalStorage("useCustomBackground", true);
@@ -83,9 +99,9 @@ const BackgroundSelector = ({
       )}
     </div>
   );
-};
+}
 
-const ThemeSelector = ({}) => {
+function ThemeSelector() {
   const themes = [
     "redYellowTheme",
     "greenTheme",
@@ -100,7 +116,7 @@ const ThemeSelector = ({}) => {
     applyBackground,
   } = useContext(ThemeContext);
 
-  const handleToggleTheme = (color) => {
+  const handleToggleTheme = (color: string) => {
     toggleTheme(color);
   };
 
@@ -119,6 +135,6 @@ const ThemeSelector = ({}) => {
       />
     </div>
   );
-};
+}
 
 export default ThemeSelector;

@@ -10,16 +10,31 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 
 import Input from "components/Input";
-const SettingsModal = ({ open, settings, onClose, onSave }) => {
-  const [date, setDate] = useState(settings ? moment(settings.endDate).toDate() : null);
-  const [title, setTitle] = useState(settings ? settings.title : '');
-  const [showCalendar, setShowCalendar] = useState(false);
 
-  const handleChangeDate = (value) => {
+type SettingsModalProps = {
+  open: boolean;
+  settings: { endDate: string; title: string };
+  onClose: () => void;
+  onSave: (value: { title: string; date: Date }) => void;
+};
+
+function SettingsModal({
+  open,
+  settings,
+  onClose,
+  onSave,
+}: SettingsModalProps) {
+  const [date, setDate] = useState<Date>(
+    settings ? moment(settings.endDate).toDate() : moment().toDate()
+  );
+  const [title, setTitle] = useState<string>(settings ? settings.title : "");
+  const [showCalendar, setShowCalendar] = useState<boolean>(false);
+
+  const handleChangeDate = (value: Date) => {
     setDate(value);
   };
 
-  const handleChange = (type, value) => {
+  const handleChange = (type: string, value: string) => {
     if (type === "title") setTitle(value);
   };
 
@@ -42,7 +57,9 @@ const SettingsModal = ({ open, settings, onClose, onSave }) => {
           <Input
             type="text"
             value={title || ""}
-            onChange={(e) => handleChange("title", e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleChange("title", e.target.value)
+            }
           />
         </div>
         <div className="settings">
@@ -57,17 +74,15 @@ const SettingsModal = ({ open, settings, onClose, onSave }) => {
         </div>
         {showCalendar && (
           <Calendar
-            // id="settings-calendar"
-            // className="hide"
             value={date}
             locale="en-US"
             minDetail={"month"}
             showNeighboringMonth={false}
             onChange={handleChangeDate}
-            nextLabel = {<i className="icon-caret-right"/>}
-            prevLabel = {<i className="icon-caret-right flip"/>}
-            next2Label= {<div />}
-            prev2Label= {<div />}
+            nextLabel={<i className="icon-caret-right" />}
+            prevLabel={<i className="icon-caret-right flip" />}
+            next2Label={<div />}
+            prev2Label={<div />}
           />
         )}
       </DialogContent>
@@ -75,12 +90,12 @@ const SettingsModal = ({ open, settings, onClose, onSave }) => {
         <Button onClick={onClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={() => onSave({title,date})} color="primary">
+        <Button onClick={() => onSave({ title, date })} color="primary">
           Save
         </Button>
       </DialogActions>
     </Dialog>
   );
-};
+}
 
 export default SettingsModal;

@@ -11,7 +11,27 @@ import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Calendar from "react-calendar";
 
-const DateSelector = ({ startDate, endDate, onDateChange, onCalculate }) => {
+type DateSelectorProps = {
+  startDate: Date;
+  endDate: Date;
+  onDateChange: () => void;
+  onCalculate: () => void;
+};
+
+type DateProps = {
+  id: string;
+  name: string;
+  value: Date;
+  onChange: (id: string, date: Date) => void;
+  onToggleCalendar: (id: string) => void;
+};
+
+function DateSelector({
+  startDate,
+  endDate,
+  onDateChange,
+  onCalculate,
+}: DateSelectorProps) {
   const CalculateButton = withStyles({
     root: {
       backgroundColor: COLOR_BLUE,
@@ -28,28 +48,34 @@ const DateSelector = ({ startDate, endDate, onDateChange, onCalculate }) => {
    */
   const resizeCalendar = () => {
     let CALENDAR_WIDTH = 350;
-    const activeCalendar = document.querySelector(".react-calendar:not(.hide)");
+    const activeCalendar: HTMLElement | null = document.querySelector(
+      ".react-calendar:not(.hide)"
+    );
 
-    if (activeCalendar) {
-      const icon = activeCalendar.previousElementSibling.previousElementSibling;
-      const { height, left: x, top: y } = icon.getBoundingClientRect();
+    if (!activeCalendar) return;
+    const icon = activeCalendar.previousElementSibling?.previousElementSibling;
+    const {
+      height,
+      left: x,
+      top: y,
+    } = icon?.getBoundingClientRect() as ClientRect;
 
-      activeCalendar.style.top = `${y + height + 13}px`;
+    activeCalendar.style.top = `${y + height + 13}px`;
 
-      const { clientWidth } = document.body;
-      if (clientWidth < 420) {
-        CALENDAR_WIDTH -= 40;
-        activeCalendar.style.width = `${CALENDAR_WIDTH}px`;
-        activeCalendar.style.left = `${(clientWidth - CALENDAR_WIDTH) / 2}px`;
-      } else {
-        activeCalendar.style.left = `${x - CALENDAR_WIDTH / 2 + 13}px`;
-        activeCalendar.style.width = `${CALENDAR_WIDTH}px`;
-      }
+    const { clientWidth } = document.body;
+    if (clientWidth < 420) {
+      CALENDAR_WIDTH -= 40;
+      activeCalendar.style.width = `${CALENDAR_WIDTH}px`;
+      activeCalendar.style.left = `${(clientWidth - CALENDAR_WIDTH) / 2}px`;
+    } else {
+      activeCalendar.style.left = `${x - CALENDAR_WIDTH / 2 + 13}px`;
+      activeCalendar.style.width = `${CALENDAR_WIDTH}px`;
     }
   };
 
-  const toggleCalendar = (type) => {
-    const calendars = document.getElementsByClassName("react-calendar");
+  const toggleCalendar = (type: string) => {
+    const calendars: HTMLCollectionOf<Element> =
+      document.getElementsByClassName("react-calendar");
     const [startCalendar, endCalendar] = calendars;
 
     if (type === TYPE_START) {
@@ -57,7 +83,7 @@ const DateSelector = ({ startDate, endDate, onDateChange, onCalculate }) => {
       if (isHidden) {
         startCalendar.classList.remove("hide");
         endCalendar.classList.add("hide");
-        resizeCalendar(TYPE_START);
+        resizeCalendar();
       } else {
         startCalendar.classList.add("hide");
       }
@@ -68,7 +94,7 @@ const DateSelector = ({ startDate, endDate, onDateChange, onCalculate }) => {
 
       if (isHidden) {
         endCalendar.classList.remove("hide");
-        resizeCalendar(TYPE_END);
+        resizeCalendar();
       } else {
         endCalendar.classList.add("hide");
       }
@@ -82,7 +108,6 @@ const DateSelector = ({ startDate, endDate, onDateChange, onCalculate }) => {
         name="Start Date"
         value={startDate}
         onChange={onDateChange}
-        onOpenCalendar={toggleCalendar}
         onToggleCalendar={toggleCalendar}
       />
       <Date
@@ -90,7 +115,6 @@ const DateSelector = ({ startDate, endDate, onDateChange, onCalculate }) => {
         name="End Date"
         value={endDate}
         onChange={onDateChange}
-        onOpenCalendar={toggleCalendar}
         onToggleCalendar={toggleCalendar}
       />
       <CalculateButton
@@ -102,9 +126,9 @@ const DateSelector = ({ startDate, endDate, onDateChange, onCalculate }) => {
       </CalculateButton>
     </Card>
   );
-};
+}
 
-const Date = ({ id, name, value, onChange, onToggleCalendar }) => {
+function Date({ id, name, value, onChange, onToggleCalendar }: DateProps) {
   const formattedValue = value && moment(value).format(DATE_FORMAT);
   return (
     <div className="date-wrapper">
@@ -147,5 +171,5 @@ const Date = ({ id, name, value, onChange, onToggleCalendar }) => {
       </div>
     </div>
   );
-};
+}
 export default DateSelector;

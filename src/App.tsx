@@ -1,8 +1,6 @@
 import React, {
   useState,
   useContext,
-  MouseEvent,
-  MouseEventHandler,
 } from "react";
 
 import MenuIcon from "@material-ui/icons/Menu";

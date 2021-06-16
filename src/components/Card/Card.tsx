@@ -7,13 +7,7 @@ type CardProps = {
   outlined?: boolean;
 };
 
-const Card: React.FC<CardProps> = ({
-  children,
-  className,
-  align,
-  outlined,
-  ...props
-}) => {
+function Card({ children, className, align, outlined, ...props }: CardProps) {
   const cardAlign = `align-${align}`;
   const cardStyle = outlined ? "outlined" : "";
   const classNames = `card ${className || ""} ${cardAlign} ${cardStyle}`;
@@ -22,7 +16,7 @@ const Card: React.FC<CardProps> = ({
       {children}
     </div>
   );
-};
+}
 
 Card.defaultProps = {
   children: <div></div>,

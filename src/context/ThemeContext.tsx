@@ -1,9 +1,21 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { createContext, useLayoutEffect, useState } from "react";
 
 import Themes from "data/Colors";
 import { setLocalStorage, getLocalStorage } from "utils/Storage";
 
-const ThemeContext = React.createContext({
+type ThemeProviderProps = {
+  children: React.ReactNode;
+};
+
+type State = {
+  theme: string;
+  isCustomMode: boolean;
+  toggleTheme: (name: string) => void;
+  toggleCustomMode: (state: boolean) => void;
+  applyBackground: () => void;
+};
+
+const ThemeContext = createContext<State>({
   theme: "greenTheme",
   isCustomMode: false,
   toggleTheme: () => {},
@@ -11,9 +23,9 @@ const ThemeContext = React.createContext({
   applyBackground: () => {},
 });
 
-const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState("greenTheme");
-  const [isCustomMode, setCustomMode] = useState(false);
+function ThemeProvider({ children }: ThemeProviderProps) {
+  const [theme, setTheme] = useState<string>("greenTheme");
+  const [isCustomMode, setCustomMode] = useState<boolean>(false);
 
   //paint app before it renders elements
   useLayoutEffect(() => {
@@ -24,33 +36,33 @@ const ThemeProvider = ({ children }) => {
 
   useLayoutEffect(() => {
     const useCustomBackground = getLocalStorage("useCustomBackground");
-    
+
     if (useCustomBackground) {
       setCustomMode(true);
       applyBackground();
     }
-  },[isCustomMode]);
+  }, [isCustomMode]);
 
-  const applyTheme = (theme) => {
+  const applyTheme = (theme: string[]) => {
     const root = document.getElementsByTagName("html")[0];
     root.style.cssText = theme.join(";");
   };
 
   const applyBackground = () => {
     const base64 = getLocalStorage("bg");
-    const img = document.querySelector(".background");
-    if(!img) return;
+    const img: HTMLImageElement = document.querySelector(".background")!;
+    if (!img) return;
     img.src = base64;
   };
 
-  const toggleTheme = (themeName) => {
+  const toggleTheme = (themeName: string) => {
     const body = document.getElementsByTagName("body")[0];
     body.style.cssText = "transition : background 0.5s ease";
     setTheme(themeName);
     setLocalStorage("theme", themeName);
   };
 
-  const toggleCustomMode = (state) => {
+  const toggleCustomMode = (state: boolean) => {
     setCustomMode(state);
     setLocalStorage("useCustomBackground", state);
   };
@@ -67,6 +79,6 @@ const ThemeProvider = ({ children }) => {
       {children}
     </ThemeContext.Provider>
   );
-};
+}
 
 export { ThemeContext, ThemeProvider };

@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
-const NavItem = ({ icon, name, children }) => {
-  const [isOpen, setOpen] = useState(true);
+type NavItemProps = {
+  icon: React.ReactNode;
+  name: string;
+  children: React.ReactNode;
+};
+
+function NavItem({ icon, name, children }: NavItemProps) {
+  const [isOpen, setOpen] = useState<boolean>(true);
 
   const toggleItem = () => {
     setOpen((prevState) => !prevState);
@@ -11,7 +17,7 @@ const NavItem = ({ icon, name, children }) => {
   const iconStyle = {
     display: "inline-block",
     transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
-    transition : 'transform 0.3s'
+    transition: "transform 0.3s",
   };
 
   return (
@@ -24,7 +30,7 @@ const NavItem = ({ icon, name, children }) => {
       {isOpen && children}
     </div>
   );
-};
+}
 
 NavItem.defaultProps = {
   icon: "",

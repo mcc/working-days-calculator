@@ -5,6 +5,9 @@ import { COLOR_BLUE } from "constants/Types";
 import { withStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
 
+type ProgressBarProps = {
+  value: number;
+};
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
     height: "1.5rem",
@@ -19,8 +22,8 @@ const BorderLinearProgress = withStyles((theme) => ({
   },
 }))(LinearProgress);
 
-const ProgressBar = ({ value }) => {
-  const [progress, setProgress] = useState(0);
+function ProgressBar({ value }: ProgressBarProps) {
+  const [progress, setProgress] = useState<number>(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -40,6 +43,6 @@ const ProgressBar = ({ value }) => {
       <span> {value || 0}%</span>
     </div>
   );
-};
+}
 
 export default ProgressBar;

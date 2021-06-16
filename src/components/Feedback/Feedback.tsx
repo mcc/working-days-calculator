@@ -8,6 +8,9 @@ import { STATUS_SUCCESS, STATUS_LOADING, STATUS_INIT } from "constants/Types";
 
 import * as Icon from "components/Icons/Icons";
 
+type FeedbackProps = {
+  onToggle: () => void;
+};
 const icons = [
   { id: 1, name: "Terrible", icon: Icon.Terrible },
   { id: 2, name: "Bad", icon: Icon.Bad },
@@ -16,10 +19,10 @@ const icons = [
   { id: 5, name: "Great", icon: Icon.Great },
 ];
 
-const Feedback = ({ onToggle }) => {
-  const [selected, setSelected] = useState(null);
-  const [comment, setComment] = useState("");
-  const [status, setStatus] = useState(STATUS_INIT);
+const Feedback: React.FC<FeedbackProps> = ({ onToggle }) => {
+  const [selected, setSelected] = useState<number>(0);
+  const [comment, setComment] = useState<string>("");
+  const [status, setStatus] = useState<string>(STATUS_INIT);
 
   const sendFeedback = async () => {
     const url = new URL(
@@ -32,7 +35,7 @@ const Feedback = ({ onToggle }) => {
       comment,
     };
 
-    url.search = new URLSearchParams(params);
+    url.search = params.toString();
     setStatus(STATUS_LOADING);
 
     const request = await fetch(url.toString(), {
@@ -52,14 +55,14 @@ const Feedback = ({ onToggle }) => {
   };
 
   const initData = () => {
-    setSelected(null);
+    setSelected(0);
     setComment("");
   };
 
-  const showMessage = (callback) => {
+  const showMessage = (callback: () => void): void => {
     callback();
 
-    const message = document.getElementById("message");
+    const message = document.getElementById("message")!;
     message.classList.toggle("fade");
     message.style.display = "block";
 
@@ -89,9 +92,9 @@ const Feedback = ({ onToggle }) => {
       </div>
       <div className="comment">
         <textarea
-          rows="5"
+          rows={5}
           placeholder="Leave a Comment ..."
-          maxLength="250"
+          maxLength={250}
           spellCheck="false"
           autoComplete="false"
           required

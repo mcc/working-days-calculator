@@ -19,10 +19,7 @@ const CountryButton = withStyles((theme) => ({
   },
 }))(Button);
 
-const CountrySelector: React.FC<CountrySelectorProps> = ({
-  code,
-  onSelect,
-}) => {
+function CountrySelector({ code, onSelect }: CountrySelectorProps) {
   const [showList, setShowList] = useState<boolean>(false);
   const [countryList, setCountryList] = useState<
     { name: string; code: string }[]
@@ -133,13 +130,15 @@ const CountrySelector: React.FC<CountrySelectorProps> = ({
       )}
     </div>
   );
-};
+}
 
-const RequiredMessage = () => (
-  <div className="required">
-    <WarningIcon />
-    Please select your country
-  </div>
-);
+function RequiredMessage() {
+  return (
+    <div className="required">
+      <WarningIcon />
+      Please select your country
+    </div>
+  );
+}
 
 export default CountrySelector;

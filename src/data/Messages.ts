@@ -27,24 +27,24 @@ const messages = [
     type: Type.MESSAGE_COMMON,
     text: () => "만기되면 뭐하실 건가요? 만기계획을 세워보세요!📝",
   },
-  { type: Type.MESSAGE_DAYS, text: (n) => `1600만원 까지 ${n}일 남았어요!` },
+  { type: Type.MESSAGE_DAYS, text: (n : number) => `1600만원 까지 ${n}일 남았어요!` },
   {
     type: Type.MESSAGE_WEEKS,
-    text: (n) =>
+    text: (n: number) =>
       n > 0
         ? `1600만원 까지 약 ${n}주 남았어요! 힘내세요🥺`
         : "드디어 이번주가 만기일 이예요!!💸",
   },
   {
     type: Type.MESSAGE_MONTHS,
-    text: (n) =>
+    text: (n: number) =>
       n > 0
         ? `1600만원 까지 약 ${n}달 남았어요!!!🙂`
         : "드디어 이번달이 만기일 이예요!!!😭",
   },
   {
     type: Type.MESSAGE_NEAREST_DAYS,
-    text: (n) =>
+    text: (n: number) =>
       n > 0
         ? `D-${n}일이 얼마 남지 않았어요! 화이팅✨`
         : "만기일이 얼마 남지 않았어요!😀",
