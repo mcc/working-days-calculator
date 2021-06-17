@@ -1,7 +1,18 @@
 import moment from "moment";
 import Holidays from "date-holidays";
 
-export const getWorkingDaysCount = (countryCode, start, end) => {
+type HolidayType = {
+  date: string;
+  name: string;
+  start?: Date;
+  end?: Date;
+};
+
+export function getWorkingDaysCount(
+  countryCode: string,
+  start: Date,
+  end: Date
+) {
   if (!countryCode) return null;
 
   const hd = new Holidays();
@@ -11,7 +22,7 @@ export const getWorkingDaysCount = (countryCode, start, end) => {
   const endYear = moment(end).year();
 
   let years = [];
-  let holidays = [];
+  let holidays: HolidayType[] = [];
 
   for (let i = 0; i <= endYear - startYear; i++) {
     years.push(startYear + i);
@@ -39,16 +50,16 @@ export const getWorkingDaysCount = (countryCode, start, end) => {
     workDays: count,
     calendarDays: daysDiff,
   };
-};
+}
 
-const formatHolidays = (list) => {
-  let holidays = [];
+function formatHolidays(list: HolidayType[]): HolidayType[] {
+  let holidays: HolidayType[] = [];
 
-  list.forEach((holiday) => {
+  list.forEach((holiday: HolidayType) => {
     let { start, end, name } = holiday;
     if (name === "설날" || name === "추석") {
-      start = moment(start).subtract(1, "days");
-      end = moment(start).add(3, "days");
+      start = moment(start).subtract(1, "days").toDate();
+      end = moment(start).add(3, "days").toDate();
     }
 
     const dayDiff = moment(end).diff(moment(start), "days");
@@ -61,4 +72,4 @@ const formatHolidays = (list) => {
     }
   });
   return holidays;
-};
+}

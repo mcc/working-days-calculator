@@ -3,7 +3,7 @@
  * @description creates a ripple effect on event target.
  * @param {Event} e
  */
-export const createRipple = (e: React.MouseEvent<HTMLElement>) => {
+export function createRipple(e: React.MouseEvent<HTMLElement>) {
   const { currentTarget } = e;
   if (!currentTarget) return;
 
@@ -26,4 +26,4 @@ export const createRipple = (e: React.MouseEvent<HTMLElement>) => {
   setTimeout(() => {
     currentTarget.removeChild(span);
   }, 500);
-};
+}
